@@ -8,7 +8,7 @@ INC 		= 	-Iincludes -Ilibft
 
 LIBFT_DIR	= libft
 
-SRCS		=	main.c
+SRCS		=	main.c free_all_rcs.c put_pixel.c
 OBJS 		=	$(SRCS:.c=.o)
 
 LIBFT = $(LIBFT_DIR)/libft.a

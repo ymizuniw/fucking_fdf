@@ -1,57 +1,85 @@
-// #include "capture.h"
 #include "includes/fdf.h"
 
-// void init_capture(void)
-// {
-// 	void *mlx_ptr;
-// 	int width = 800; // Set the desired width of the window
-// 	int height = 600; // Set the desired height of the window
-// 	mlx_ptr = mlx_init(); // Initialize the MiniLibX library
-// 	mlx_new_window(mlx_ptr, width, height, "Capture Window");
-// }
-// void capture_screen(void)
-// {
-// 	// This function would contain the logic to capture the screen
-// 	// For now, we will just print a message
-// 	printf("Screen captured!\n");
-// }
-
-int event_handler(int keycode, void *param)
+int	handle_key(int keycode, void *param)
 {
-	// Handle key events here
-	(void)param; // Avoid unused parameter warning
-	if (keycode == 65307) // Escape key
+	t_app	*app;
+
+	app = (t_app *)param;
+	if (!app)
 	{
+		fprintf(stderr, "App parameter is NULL\n");
+		return (0);
+	}
+	// Handle key events here
+	if (keycode == XK_Escape) // Escape key
+	{
+		mlx_destroy_window(app->mlx_ptr, app->win_ptr); // Close the window
 		printf("Escape key pressed, exiting...\n");
 		exit(0);
 		// free_all_resources();
 	}
-	return 0;
+	return (0);
 }
 
-int main(int argc, char **argv)
+int	handle_close(void *param)
 {
-	// Initialize the FDF application
-	void *mlx_ptr;
-	void *win_ptr;
+	t_app	*app;
 
-	(void)argv;
-	(void)argc;
-	mlx_ptr = mlx_init(); // Initialize MiniLibX
-	if (!mlx_ptr)
+	// Handle window close event
+	app = (t_app *)param;
+	mlx_destroy_window(app->mlx_ptr, app->win_ptr); // Close the window
+	printf("Window closed, exiting...\n");
+	exit(0);
+	// free_all_resources();
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_app	app;
+	t_img	img;
+
+	// Initialize the FDF application
+	if (argc != 1)
+	{
+		fprintf(stderr, "Usage: %s\n", argv[0]);
+		return (1);
+	}
+	app.mlx_ptr = mlx_init(); // Initialize MiniLibX
+	if (!app.mlx_ptr)
 	{
 		fprintf(stderr, "Failed to initialize MiniLibX\n");
-		return 1;
+		return (1);
 	}
-	win_ptr = mlx_new_window(mlx_ptr, 800, 600, "FDF");
-	if (!win_ptr)
+	app.win_ptr = mlx_new_window(app.mlx_ptr, 800, 600, "FDF");
+	if (!app.win_ptr)
 	{
 		fprintf(stderr, "Failed to create window\n");
-		return 1;
+		return (1);
 	}
+	img.img_ptr = mlx_new_image(app.mlx_ptr, 800, 600);
+	if (!img.img_ptr)
+	{
+		fprintf(stderr, "Failed to create image\n");
+		mlx_destroy_window(app.mlx_ptr, app.win_ptr);
+		return (1);
+	}
+	img.data_addr = mlx_get_data_addr(img.img_ptr, &img.bits_per_pixel,
+			&img.size_line, &img.endian);
+	if (!img.data_addr)
+	{
+		fprintf(stderr, "Failed to get image data address\n");
+		mlx_destroy_image(app.mlx_ptr, img.img_ptr);
+		mlx_destroy_window(app.mlx_ptr, app.win_ptr);
+		return (1);
+	}
+	app.img = &img; // Assign the image to the app structure
+	// Draw the scene
+	draw_scene(&app);
 	// Set up event hooks
-	mlx_hook(win_ptr, KeyPress, KeyPressMask, event_handler, mlx_ptr); // Key press event
-	mlx_hook(win_ptr, KeyPress, KeyPressMask, event_handler, mlx_ptr); // Close window event
-	mlx_loop(mlx_ptr); // Start the event loop
-	return 0;
+	mlx_key_hook(app.win_ptr, handle_key, &app);
+	mlx_hook(app.win_ptr, 17, 0, handle_close, &app);
+	mlx_put_image_to_window(app.mlx_ptr, app.win_ptr, app.img->img_ptr, 0, 0);
+	mlx_loop(app.mlx_ptr); // Enter the event loop
+	return (0);
 }
