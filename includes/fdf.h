@@ -6,6 +6,7 @@
 # include <X11/keysym.h>
 # include "../libft/includes/libft.h"
 
+//structure for containing img
 typedef struct s_img
 {
 	void *img_ptr;
@@ -17,12 +18,13 @@ typedef struct s_img
 	int height;
 } t_img;
 
+//structure for containing application information
 typedef struct s_app
 {
 	void *mlx_ptr;
 	void *win_ptr;
-	int width;
-	int height;
+	int x_size;
+	int y_size;
 	t_img *img; // Image structure for rendering
 } t_app;
 
