@@ -66,7 +66,7 @@ t_bool draw_map(t_img *img)
 	//rotation
 	1. rotation_matrix_multiplication to 3d vector
 		//keys
-			:left click + direction key up/down/left/right
+			:shift click + direction key up/down/left/right
 	//translation
 	1. horizontal -> +x
 	2. virtical -> +y
@@ -126,22 +126,6 @@ int expose_hook(void *param)
 	// set up for close event with "ESC" in X11 17:ESC
 	//handle_close(void *app)
 // Enter the event loop
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //entry point
 int	main(int argc, char **argv)

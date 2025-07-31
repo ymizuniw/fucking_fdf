@@ -78,33 +78,3 @@ void	case_pos()
 {
 
 }
-
-dx = abs(x1 - x0)
-dy = -abs(y1 - y0)
-int sign_x = (x1 > x0) ? 1 : -1;
-int sign_y = (y1 > y0) ? 1 : -1;
-int err = 
-
-D = dy;
-if (err )
-
-
-
-y = (dy/dx) * x + C
-
-dx * y = dy * x + C
-
-xdy - ydx + C = 0;
-
-2 * xdy - 2 * ydx + C = 0;
-
-
-// if y is less by 0.5 or more, the left value will INCREASE.
-// However, you don't wanna use float, so multiply by 2 both ends.
-//
-// Then, increment y++ to adjust the equation keep established.
-// Thuss, the equation below is used to judgement.
-
-int err = 2 * xdy - 2 * ydx + C;
-if (err != 0)
-	y++;
