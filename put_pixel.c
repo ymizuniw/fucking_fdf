@@ -2,6 +2,35 @@
 
 //	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
 
+
+
+//dst holds the infromation of color of the designated pixel.
+void	put_pixel(t_img *img, int x, int y, int color)
+{
+	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
+		return ;
+	//1 byte ptr designated by coordination information. the increment unit is 1byte.
+	char *dst = img->img_ptr + (y * img->size_line + x * (img->bits_per_pixel));
+
+	//4bytes data set from dst. 
+	*(unsigned int *)dst = color;
+}
+
+
+the data structure is maybe like,
+
+img->img_ptr
+
+pixel_color {1, 2, 3, 4, ... , N};
+
+the color unit size is sizeof(img->bits_per_pixel).
+
+x++ and everytime y reaches size_line, it will be incremented,
+and x is reset to 0.
+
+the reason dst should be casted to *(unsigned int *) is,
+the content is ordinarily of size img->bits_per_pixel.
+
 //Bresenham's line algorithm, round by the measure of delta 0.5
 void	draw_line(t_img *img, int x0, int y0, int x1, int y1, int color)
 {
@@ -71,7 +100,6 @@ void	BresenHam(int x0, int y0, int x1, int y1)
 		bresenham to judge y increment
 	else ((sign_x * sign_y) < 0)
 		bresenham to judge y decrement
-
 }
 
 void	case_pos()
