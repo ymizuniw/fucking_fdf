@@ -16,21 +16,6 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-
-the data structure is maybe like,
-
-img->img_ptr
-
-pixel_color {1, 2, 3, 4, ... , N};
-
-the color unit size is sizeof(img->bits_per_pixel).
-
-x++ and everytime y reaches size_line, it will be incremented,
-and x is reset to 0.
-
-the reason dst should be casted to *(unsigned int *) is,
-the content is ordinarily of size img->bits_per_pixel.
-
 //Bresenham's line algorithm, round by the measure of delta 0.5
 void	draw_line(t_img *img, int x0, int y0, int x1, int y1, int color)
 {

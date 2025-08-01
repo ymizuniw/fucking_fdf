@@ -66,8 +66,8 @@ draw_line_y(p(i,j+1));
 #define SQ_EDGE 10   // 正方形のサイズ
 #define SPACE    1   // ワイヤーの間隔（見た目上の隙間）
 
-img_width  = (map_width * sq_edge) - (map_width - 1) * space);
-img_height = (map_height * sq_edge) - (map_height - 1) * space);
+img_width  = (map_width * sq_edge) + (map_width - 1) * space);
+img_height = (map_height * sq_edge) + (map_height - 1) * space);
 
 また、このimg はwindow 内において左上から表示されるため、画面の中心に表示されるように初期化するには、
 二次元座標への変換後（なぜなら、二次元の画面に描画されるのはこの座標に沿った線である）に全ての成分に画面中心へのオフセットを加算する。その式は、以下のようになる。
@@ -83,7 +83,9 @@ proj_y = cur_x + offset_y;
 
 
 //pixel_buffer flush event
-回転単位の変換が終り次第画面クリアー＞再描画
+キーイベントに登録された回転単位の変換が終り次第画面クリアー＞再描画
+
+
 
 
 //Thought about pixel information mermory allocation.
@@ -146,9 +148,6 @@ err_unit = 2dyは、毎回のループでerr として蓄積される。このer
 判定式:err1 > 0
 と表される。
 									終
-
-
-
 
 
 int pos = (y * size_line + x * (bits_per_pixel / 8))

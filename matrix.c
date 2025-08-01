@@ -3,7 +3,7 @@
 void		rotate_x(t_vec_3 *p, float t);
 void		rotate_y(t_vec_3 *p, float t);
 void		rotate_z(t_vec_3 *p, float t);
-void		project_iso(t_vec_3 *p);
+void		project_iso(t_vec_3 p);
 
 // keep x
 // {
@@ -24,61 +24,58 @@ void		project_iso(t_vec_3 *p);
 //     0           0           1
 // }
 
-typedef struct s_vec_3
+t_vec_2	transform_object(t_vec_3 p, t_matrix *mat)
 {
-	float	x;
-	float	y;
-	float	z;
-}			t_vec_3;
+	t_vec_2	new;
 
-typedef struct s_vec_2
-{
-	float	x;
-	float	y;
-}			t_vec_2;
-
-typedef struct s_matrix
-{
-	int		theta_x;
-	int		theta_y;
-	int		theta_z;
-	float	scale;
-}			t_matrix;
-
-transform_object(t_vec_3 p, t_matrix *mat)
-{
-    t_vec_2 new;
-	
-    rotate_x(&p, mat->theta_x);
+	rotate_x(&p, mat->theta_x);
 	rotate_y(&p, mat->theta_y);
 	rotate_z(&p, mat->theta_z);
 	new = proj_iso(p);
+	new.x *= mat->scale;
+	new.y *= mat->scale;
+	return (new);
 }
 
 void	rotate_x(t_vec_3 *p, float t)
 {
-	p->y = p->y * cos(t) - p->z * sin(t);
-	p->z = p->y * sin(t) + p->z * cos(t);
+    float tmp_y;
+    float tmp_z;
+
+    tmp_y = p->y;
+    tmp_z = p->z;
+	p->y = tmp_y * cos(t) - tmp_z * sin(t);
+	p->z = tmp_y * sin(t) + tmp_z * cos(t);
 }
 
 void	rotate_y(t_vec_3 *p, float t)
 {
-	p->x = p->x * cos(t) + p->z * sin(t);
-	p->z = p->x * (-sin(t)) + p->z * cos(t);
+    float tmp_x;
+    float tmp_z;
+
+    tmp_x = p->x;
+    tmp_z = p->z;
+	p->x = tmp_x * cos(t) + tmp_z * sin(t);
+	p->z = tmp_x * (-sin(t)) + tmp_z * cos(t);
 }
 
 void	rotate_z(t_vec_3 *p, float t)
 {
-	p->x = p->x * cos(t) - p->y * sin(t);
-	p->y = p->x * sin(t) + p->y * cos(t);
+    float tmp_x;
+    float tmp_y;
+
+    tmp_x = p->x;
+    tmp_y = p->y;
+	p->x = tmp_x * cos(t) - tmp_y * sin(t);
+	p->y = tmp_x * sin(t) + tmp_y * cos(t);
 }
 
-//isometric projection using angle t = 30;
+// isometric projection using angle t = 30;
 t_vec_2	proj_iso(t_vec_3 p)
 {
 	t_vec_2 res;
 
-	res.x = (p.x - p.y) * cos(30);
-	res.y = (p.x + p.y) * sin(30) - p.z;
+	res.x = (p.x - p.y) * COS30;
+	res.y = (p.x + p.y) * SIN30 - p.z;
 	return (res);
 }
