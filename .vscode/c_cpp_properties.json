@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/Library/Developer/CommandLineTools/SDKs/MacOSX15.5.sdk/System/Library/Frameworks/Tk.framework/Versions/8.5/Headers"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
