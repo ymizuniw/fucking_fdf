@@ -7,7 +7,7 @@ int	handle_key(int keycode, void *param)
 	
 	app = (t_app *)param;
 	if (keycode == XK_Escape)
-		mlx_loop_end(app->mlx_ptr);//mlx loop end. no more key is catched
+		mlx_loop_end(app->mlx_ptr);//mlx loop end. no more key is catched.
 	return (0);
 }
 
