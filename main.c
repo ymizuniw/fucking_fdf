@@ -51,7 +51,7 @@ void free_app(t_app *app)
 		free(app->mlx_ptr);
 }
 
-t_bool draw_map(t_img *img)
+bool draw_map(t_img *img)
 {
 	//draw maps
 	//draw
@@ -88,21 +88,14 @@ void	clear_img(t_img *img)
 	ft_bzero(img->data_addr, img->height * img->size_line);
 }
 
-void	draw_lines(t_img *img)
-{
-	size_t j;
-
-	j = 0;
-	while (j < )
-		draw_line();
-}
-
 //draw the picture of parsed 3d map in 2d display
 draw_field(t_app *app)
 {
+	//initialize img
 	clear_img(app->img);
-	proj_3d_to_2d();
-	draw_lines();
+	//set the mapped vector
+	draw_line();
+	//put the complete img to the window
 	mlx_put_image_to_window(app->mlx_ptr, app->win_ptr, app->img->img_ptr, 800, 600);
 }
 
@@ -127,17 +120,55 @@ int expose_hook(void *param)
 	//handle_close(void *app)
 // Enter the event loop
 
+
+//現在のデータ構造、処理フローをまとめる。
+//引数バリデーションのあと、mlxオブジェクトを初期化する。
+//マップをパースして、intの二次元マップを取得する。
+//map 情報に基づいてwindowにimgとして画像を配置する。
+
+//問題点をまとめる。
+//mlx_オブジェクトが何を指しているのか、不明。
+
+
+t_vec_3 set_vec_3(int **map_d3, int width, int height)
+{
+	//the array of z, the line_size is one row size == width.
+	//for i, j, set the point z(x, y)
+	//z = map[y][x];
+	size_t x;
+	size_t y;
+	size_t z;
+
+	x = 0;
+	y = 0;
+	t_vec_3 *z = malloc(sizeof(t_vec_3) * width * height);
+	while (y < height)
+	{
+		x = 0;
+		while (x < width)
+		{
+			z[i] = map_d3[y][x];
+			x++;
+		}
+		y++;
+	}
+	return (vec_3);
+}
+
 //entry point
 int	main(int argc, char **argv)
 {
-
-	// //parse map
-	// t_parsing par;//wrapping struct
-	// t_map map;
+	int		**map_d3;
+	t_map_info *map_info;
 	
-	// parse_map(t_map *map);
-	// set_three_dimentional_vector(map, &par.v_third);
+	map_d3 = parse_map(argv[1], map_info);
+	t_vec_2 vec_2;
+	t_vec_3 vec_3 = set_vec_3(map_d3);
 
+	while (count < width * height)
+	{
+		vec_2 = convert_object(map_d3, mat);
+	}
 	t_app	app;
 	t_img	img;
 	// Initialize the FDF application >> init_mlx(app);

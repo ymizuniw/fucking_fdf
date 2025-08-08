@@ -6,6 +6,16 @@
 # include <X11/keysym.h>
 # include <mlx.h>
 
+//parse map
+typedef struct s_map_info
+{
+	size_t	height;
+	size_t	width;
+} t_map_info;
+
+void	initialize_map_info(t_map_info *map_info);
+int		**parse_map(char *map, t_map_info *map_info);
+
 //draw_line struct
 typedef struct s_draw_line
 {
@@ -50,12 +60,14 @@ typedef struct s_app
 }			t_app;
 
 void		put_pixel(t_img *img, int x, int y, int color);
+void		draw_line(t_img *img, int x0, int y0, int x1, int y1, int color);
 void		draw_scene(t_app *app);
 
 // the fixed angle for isometric projection
 # define COS30 0.86602540378f
 # define SIN30 0.5f
 // vector and matrix info structure
+// z = map_3d[y][x];
 typedef struct s_vec_3
 {
 	float	x;
@@ -69,6 +81,8 @@ typedef struct s_vec_2
 	float	y;
 }			t_vec_2;
 
+//t_matrix keeps the accumulated quantity of rotation and scale.
+//so, the type should be defined as t_matrix *var;
 typedef struct s_matrix
 {
 	float	theta_x;
@@ -78,6 +92,7 @@ typedef struct s_matrix
 }			t_matrix;
 
 // rotation matrix and isometric proj functions
+t_vec_2		convert_object(t_vec_3 p, t_matrix *mat);
 void		rotate_x(t_vec_3 *p, float t);
 void		rotate_y(t_vec_3 *p, float t);
 void		rotate_z(t_vec_3 *p, float t);

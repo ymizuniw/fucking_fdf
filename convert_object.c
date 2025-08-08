@@ -1,10 +1,5 @@
 #include "includes/fdf.h"
 
-void		rotate_x(t_vec_3 *p, float t);
-void		rotate_y(t_vec_3 *p, float t);
-void		rotate_z(t_vec_3 *p, float t);
-void		project_iso(t_vec_3 p);
-
 // keep x
 // {
 //     1       0       0
@@ -24,7 +19,7 @@ void		project_iso(t_vec_3 p);
 //     0           0           1
 // }
 
-t_vec_2	transform_object(t_vec_3 p, t_matrix *mat)
+t_vec_2	convert_object(t_vec_3 p, t_matrix *mat)
 {
 	t_vec_2	new;
 

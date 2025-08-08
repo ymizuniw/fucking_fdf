@@ -1,18 +1,24 @@
 #include "fdf.h"
 
 // parse given map to int double array.
+//the width and height should be set to a structure.
+typedef struct s_map_info
+{
+	size_t	height;
+	size_t	width;
+} t_map_info;
+
 int	**parse_map(char *map)
 {
 	int		fd;
 	t_list	*map_list;
 	char	*line;
-	size_t	height;
-	size_t	width;
 	int		**parsed_map;
 	size_t	i;
 	char	**row;
 	t_list	*cur;
 	size_t	j;
+	t_map_info map_info;
 
 	fd = wopen(map);
 	map_list = NULL;
@@ -23,11 +29,11 @@ int	**parse_map(char *map)
 			break ;
 		ft_lstadd_back(&map_list, ft_lstnew(line));
 	}
-	height = ft_lstsize(map_list);
-	width = 0;
+	map_info->height = ft_lstsize(map_list);
+	map_info->width = 0;
 	if (map_list)
-		width = ft_count_word((char *)map_list->content, ' ');
-	parsed_map = ft_calloc(height + 1, sizeof(int *));
+		map_info->width = ft_count_word((char *)map_list->content, ' ');
+	parsed_map = ft_calloc(map_info->height + 1, sizeof(int *));
 	if (!parsed_map)
 		return (NULL);
 	i = 0;
@@ -35,7 +41,7 @@ int	**parse_map(char *map)
 	while (cur)
 	{
 		row = ft_split((char *)cur->content, ' ');
-		parsed_map[i] = ft_calloc(width + 1, sizeof(int));
+		parsed_map[i] = ft_calloc(map_info->width + 1, sizeof(int));
 		j = 0;
 		while (j < width)
 			parsed_map[i][j] = ft_atoi(row[j++]);
@@ -75,11 +81,4 @@ void	free_double_array(char **row)
 		free(row[i++]);
 	if (row)
 		free(row);
-}
-
-t_vec_3 set_vec_3(parsed_map, width, height)
-{
-    while ()
-
-    vec->x = i;
 }
