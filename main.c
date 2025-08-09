@@ -85,7 +85,7 @@ bool draw_map(t_img *img)
 
 void	clear_img(t_img *img)
 {
-	ft_bzero(img->data_addr, img->height * img->size_line);
+	ft_bzero(img->data_addr, img->img_height * img->size_line);
 }
 
 //draw the picture of parsed 3d map in 2d display
@@ -129,45 +129,82 @@ int expose_hook(void *param)
 //問題点をまとめる。
 //mlx_オブジェクトが何を指しているのか、不明。
 
-
-t_vec_3 set_vec_3(int **map_d3, int width, int height)
+static	void	set_map_array(t_map_3d *p_3d, int **map_orig, int width, int height, int color)
 {
-	//the array of z, the line_size is one row size == width.
-	//for i, j, set the point z(x, y)
-	//z = map[y][x];
 	size_t x;
 	size_t y;
-	size_t z;
+	size_t i;
 
 	x = 0;
 	y = 0;
-	t_vec_3 *z = malloc(sizeof(t_vec_3) * width * height);
+	i = 0;
 	while (y < height)
 	{
 		x = 0;
 		while (x < width)
 		{
-			z[i] = map_d3[y][x];
+			p_3d[i].x = x;
+			p_3d[i].y = y;
+			p_3d[i].z = map_orig[y][x];
+			p_3d[i].color = color;
+			i++;
 			x++;
 		}
 		y++;
 	}
-	return (vec_3);
+}
+
+t_map_3d *set_map_3d(int **map_orig, int width, int height, int color)
+{
+	size_t x;
+	size_t y;
+	t_map_3d *p_3d;
+	size_t i;
+
+	x = 0;
+	y = 0;
+	i = 0;
+	p_3d = malloc(sizeof(t_map_3d) * width * height);
+	if (!p_3d)
+		return (NULL);
+
+
+	return (p_3d);
 }
 
 //entry point
 int	main(int argc, char **argv)
 {
-	int		**map_d3;
-	t_map_info *map_info;
+	int				**map_orig;
+	int				color = 0xFFFFFF;
+	t_map_info		*map_info;
+	t_map_2d		*map_2d;
+	t_map_3d		*map_3d;
 	
-	map_d3 = parse_map(argv[1], map_info);
-	t_vec_2 vec_2;
-	t_vec_3 vec_3 = set_vec_3(map_d3);
-
-	while (count < width * height)
+	map_orig = parse_map(argv[1], map_info);
+	size_t map_size = map_info->width * map_info->height;
+	map_3d = set_map_3d(map_orig, map_info->width, map_info->height, color);
+	if (!map_3d)
 	{
-		vec_2 = convert_object(map_d3, mat);
+		free(map_3d);
+		return (1);
+	}
+	map_2d = malloc(sizeof(t_map_2d) * map_size);
+	if (!map_2d)
+	{
+		free_double_array(map_3d);
+		free(map_3d);
+		return(1);
+	}
+	t_matrix mat;
+	//react to key events and set rotation angle, 
+	set_matrix(mat);
+	size_t i = 0;
+	while (i < map_size)
+	{
+		map_2d[i] = convert_object(map_3d[i], &mat);
+		map_2d[i].color = color;
+		i++;
 	}
 	t_app	app;
 	t_img	img;
@@ -184,7 +221,6 @@ int	main(int argc, char **argv)
 	mlx_key_hook(app.win_ptr, handle_key, &app); 
 	mlx_hook(app.win_ptr, 17, 0, handle_close, &app);
 	mlx_loop(app.mlx_ptr);
-
 	distroy_app(&app);
 	return (0);
 }

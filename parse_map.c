@@ -1,14 +1,14 @@
 #include "fdf.h"
 
-// parse given map to int double array.
+//parse given map to int double array.
 //the width and height should be set to a structure.
-typedef struct s_map_info
+void	initialize_map_info(t_map_info *map_info)
 {
-	size_t	height;
-	size_t	width;
-} t_map_info;
+	map_info->width = 0;
+	map_info->height = 0;
+}
 
-int	**parse_map(char *map)
+int	**parse_map(char *map, t_map_info *map_info)
 {
 	int		fd;
 	t_list	*map_list;
@@ -18,7 +18,6 @@ int	**parse_map(char *map)
 	char	**row;
 	t_list	*cur;
 	size_t	j;
-	t_map_info map_info;
 
 	fd = wopen(map);
 	map_list = NULL;
@@ -43,7 +42,7 @@ int	**parse_map(char *map)
 		row = ft_split((char *)cur->content, ' ');
 		parsed_map[i] = ft_calloc(map_info->width + 1, sizeof(int));
 		j = 0;
-		while (j < width)
+		while (j < map_info->width)
 			parsed_map[i][j] = ft_atoi(row[j++]);
 		free_double_array(row);
 		cur = cur->next;

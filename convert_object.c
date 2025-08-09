@@ -19,20 +19,9 @@
 //     0           0           1
 // }
 
-t_vec_2	convert_object(t_vec_3 p, t_matrix *mat)
-{
-	t_vec_2	new;
 
-	rotate_x(&p, mat->theta_x);
-	rotate_y(&p, mat->theta_y);
-	rotate_z(&p, mat->theta_z);
-	new = proj_iso(p);
-	new.x *= mat->scale;
-	new.y *= mat->scale;
-	return (new);
-}
 
-void	rotate_x(t_vec_3 *p, float t)
+static void	rotate_x(t_map_3d *p, float t)
 {
     float tmp_y;
     float tmp_z;
@@ -43,7 +32,7 @@ void	rotate_x(t_vec_3 *p, float t)
 	p->z = tmp_y * sin(t) + tmp_z * cos(t);
 }
 
-void	rotate_y(t_vec_3 *p, float t)
+static void	rotate_y(t_map_3d *p, float t)
 {
     float tmp_x;
     float tmp_z;
@@ -54,7 +43,7 @@ void	rotate_y(t_vec_3 *p, float t)
 	p->z = tmp_x * (-sin(t)) + tmp_z * cos(t);
 }
 
-void	rotate_z(t_vec_3 *p, float t)
+static void	rotate_z(t_map_3d *p, float t)
 {
     float tmp_x;
     float tmp_y;
@@ -66,11 +55,26 @@ void	rotate_z(t_vec_3 *p, float t)
 }
 
 // isometric projection using angle t = 30;
-t_vec_2	proj_iso(t_vec_3 p)
+static t_map_2d	proj_iso(t_map_3d p)
 {
-	t_vec_2 res;
+	t_map_2d res;
 
 	res.x = (p.x - p.y) * COS30;
 	res.y = (p.x + p.y) * SIN30 - p.z;
 	return (res);
+}
+
+//define the point z(x,y) and then,
+//call convert_object() for all elements of map_3d
+t_map_2d		convert_object(t_map_3d p, t_matrix *mat)
+{
+	t_map_2d	new;
+
+	rotate_x(&p, mat->theta_x);
+	rotate_y(&p, mat->theta_y);
+	rotate_z(&p, mat->theta_z);
+	new = proj_iso(p);
+	new.x *= mat->scale;
+	new.y *= mat->scale;
+	return (new);
 }
