@@ -6,6 +6,15 @@
 # include <X11/keysym.h>
 # include <mlx.h>
 
+//key codes
+#define XK_Escape		0xFF1B
+#define XK_Left			0xFF51	/* Move left, left arrow */
+#define XK_Up			0xFF52	/* Move up, up arrow */
+#define XK_Right		0xFF53	/* Move right, right arrow */
+#define XK_Down			0xFF54	/* Move down, down arrow */
+#define XK_Shift_L		0xFFE1	/* Left shift */
+#define XK_Shift_R		0xFFE2	/* Right shift */
+
 //parse map
 typedef struct s_map_info
 {
@@ -50,6 +59,7 @@ typedef struct s_app
 	void	*win_ptr;
 	int		win_width;
 	int		win_height;
+	t_matrix *mat;
 	t_img	*img;
 }			t_app;
 
@@ -88,6 +98,10 @@ typedef struct s_matrix
 	float	theta_y;
 	float	theta_z;
 	float	scale;
+	float	shift_x;
+	float	shift_y;
+	float	shift_z;
+	float	theta_unit;
 }			t_matrix;
 
 // rotation matrix and isometric proj functions

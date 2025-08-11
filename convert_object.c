@@ -19,8 +19,6 @@
 //     0           0           1
 // }
 
-
-
 static void	rotate_x(t_map_3d *p, float t)
 {
     float tmp_y;

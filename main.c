@@ -89,7 +89,7 @@ void	clear_img(t_img *img)
 }
 
 //draw the picture of parsed 3d map in 2d display
-draw_field(t_app *app)
+void	draw_field(t_app *app)
 {
 	//initialize img
 	clear_img(app->img);
@@ -100,7 +100,7 @@ draw_field(t_app *app)
 }
 
 //redraw the picture with connected event
-int expose_hook(void *param)
+int	expose_hook(void *param)
 {
 	t_app *app = (t_app *)param;
 	draw_field(app);
@@ -120,14 +120,10 @@ int expose_hook(void *param)
 	//handle_close(void *app)
 // Enter the event loop
 
-
 //現在のデータ構造、処理フローをまとめる。
 //引数バリデーションのあと、mlxオブジェクトを初期化する。
 //マップをパースして、intの二次元マップを取得する。
 //map 情報に基づいてwindowにimgとして画像を配置する。
-
-//問題点をまとめる。
-//mlx_オブジェクトが何を指しているのか、不明。
 
 static	void	set_map_array(t_map_3d *p_3d, int **map_orig, int width, int height, int color)
 {
@@ -154,23 +150,37 @@ static	void	set_map_array(t_map_3d *p_3d, int **map_orig, int width, int height,
 	}
 }
 
-t_map_3d *set_map_3d(int **map_orig, int width, int height, int color)
+t_map_3d	*set_map_3d(int **map_orig, int width, int height, int color)
 {
-	size_t x;
-	size_t y;
-	t_map_3d *p_3d;
-	size_t i;
+	t_map_3d	*p_3d;
 
-	x = 0;
-	y = 0;
-	i = 0;
 	p_3d = malloc(sizeof(t_map_3d) * width * height);
 	if (!p_3d)
 		return (NULL);
-
-
+	set_map_array(p_3d, map_orig, width, height, color);
 	return (p_3d);
 }
+
+
+
+	void	w_parse_map(char *map_file, char **map_orig, t_map_info *map_info)
+	{
+		map_orig = parse_map(map_file, map_info);
+		if (!map_orig)
+		{
+			ft_putstr_fd("Error: Failed to parse map.\n", 2);
+			exit(EXIT_FAILURE);
+		}
+	}
+	void	w_set_map_3d(int **map_orig, t_map_3d *map_3d, t_map_info *map_info, int color)
+	{
+		map_3d = set_map_3d(map_orig, map_info->width, map_info->height, color);
+		if (!map_3d)
+		{
+			free_map_orig(map_3d);
+			exit (EXIT_FAILURE);
+		}
+	}
 
 //entry point
 int	main(int argc, char **argv)
@@ -180,15 +190,16 @@ int	main(int argc, char **argv)
 	t_map_info		*map_info;
 	t_map_2d		*map_2d;
 	t_map_3d		*map_3d;
-	
-	map_orig = parse_map(argv[1], map_info);
-	size_t map_size = map_info->width * map_info->height;
-	map_3d = set_map_3d(map_orig, map_info->width, map_info->height, color);
-	if (!map_3d)
+
+	if (argc != 2)
 	{
-		free(map_3d);
+		ft_putstr_fd("Usage: ./fdf map_file.fdf\n", 2);
 		return (1);
 	}
+	w_parse_map(argv[1], map_orig, &map_info);
+	size_t map_size = map_info->width * map_info->height;
+	w_set_map_3d(map_orig, map_3d, map_info, color);
+	w_set_map_2d(map_3d, map_size, color);
 	map_2d = malloc(sizeof(t_map_2d) * map_size);
 	if (!map_2d)
 	{
@@ -196,9 +207,10 @@ int	main(int argc, char **argv)
 		free(map_3d);
 		return(1);
 	}
+
 	t_matrix mat;
 	//react to key events and set rotation angle, 
-	set_matrix(mat);
+	// set_matrix(mat);
 	size_t i = 0;
 	while (i < map_size)
 	{
@@ -206,6 +218,7 @@ int	main(int argc, char **argv)
 		map_2d[i].color = color;
 		i++;
 	}
+
 	t_app	app;
 	t_img	img;
 	// Initialize the FDF application >> init_mlx(app);
