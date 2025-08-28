@@ -41,8 +41,6 @@ proj_x = cur_x + offset_x;
 proj_y = cur_x + offset_y;
 
 
-
-
 //pixel_buffer flush event
 キーイベントに登録された回転単位の変換が終り次第画面クリアー＞再描画
 

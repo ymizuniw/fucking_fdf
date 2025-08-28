@@ -7,12 +7,12 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	if (x < 0 || x >= img->img_width || y < 0 || y >= img->img_height)
 		return ;
 	//1 byte ptr designated by coordination information. the increment unit is 1byte.
-	char *dst = img->img_ptr + (y * img->size_line + x * (img->bits_per_pixel / 8));
+	char *dst = img->data_addr + (y * img->size_line + x * (img->bits_per_pixel / 8));
 	//4bytes data set from dst. 
 	*(unsigned int *)dst = color;
 }
 
-//draw_line function is based on Bresenham's line algorithm.
+//draw_line function is based on Bresenham's line drawing algorithm.
 static void	initialize_draw_line_struct(t_draw_line *dl, t_map_2d *start, t_map_2d *end)
 {
 	dl->x = (int)start->x;
@@ -24,20 +24,21 @@ static void	initialize_draw_line_struct(t_draw_line *dl, t_map_2d *start, t_map_
 	if (dl->dx < 0)
 	{
 		dl->dx *= -1;
-		dl->sign_x *= - 1;
+		dl->sign_x *= -1;
 	}
 	if (dl->dy < 0)
 	{
 		dl->dy *= -1;
 		dl->sign_y *= -1;
 	}
-	dl->err = 0;
+	// dl->err = 0;
 }
 
 //x major axis bresenham
 static	void	x_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start, t_map_2d *end)
 {
-	dl->err = dl->dx / 2;
+	int err;
+	err = dl->dx / 2;
 	while (dl->x != (int)end->x)
 	{
 		put_pixel(img, dl->x, dl->y, start->color);
@@ -45,15 +46,17 @@ static	void	x_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start, t_map_2d 
 		if (dl->err < 0)
 		{
 			dl->y += dl->sign_y;
-			dl->err -= dl->dx;
+			dl->err += dl->dx;
 		}
 		dl->x += dl->sign_x;
 	}
 }
+
 //y major axis bresenham
 static void y_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start, t_map_2d *end)
 {
-	dl->err = dl->dy / 2;
+	int err;
+	err = dl->dy / 2;
 	while (dl->y != (int)end->y)
 	{
 		put_pixel(img, dl->x, dl->y, start->color);

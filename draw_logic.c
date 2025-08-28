@@ -22,46 +22,44 @@
 //各行について隣接する点をワイヤーで接続
 //各列について隣接する点をワイヤーで接続
 
-static void connect_row(t_img *img, t_map_2d *map_2d)
+static void connect_row(t_img *img, t_map_2d *map_2d, int map_width, int map_height)
 {
     size_t y;
     size_t x;
 
     y = 0;
-    x = 0;
-    while (y < img->img_height)
+    while (y < map_height)
     {
-        while (x < img->img_width - 1)
+        x = 0;
+        while (x < map_width - 1)
         {
-            draw_line(img, &map_2d[y * img->img_width + x], &map_2d[y * img->img_width + x + 1]);
+            draw_line(img, &map_2d[y * map_width + x], &map_2d[y * map_width + x + 1]);
             x++;
         }
         y++;
     }
 }
 
-static void connect_column(t_img *img, t_map_2d *map_2d)
+static void connect_column(t_img *img, t_map_2d *map_2d, int map_width, int map_height)
 {
     size_t y;
     size_t x;
-    size_t i;
 
-    y = 0;
     x = 0;
-    i = 0;
-    while (x < img->img_width)
+    while (x < map_width)
     {
-        while (y < img->img_height - 1)
+        y = 0;
+        while (y < map_height - 1)
         {
-            draw_line(img, &map_2d[y * img->img_width + x], &map_2d[(y + 1) * img->img_width + x]);
+            draw_line(img, &map_2d[y * map_width + x], &map_2d[(y + 1) * map_width + x]);
             y++;
         }
         x++;
     }
 }
 
-void draw_map(t_img *img, t_map_2d *map_2d)
+void draw_map(t_img *img, t_map_2d *map_2d,int map_width, int map_height)
 {
-    connect_row(img, map_2d);
-    connect_column(img, map_2d);
+    connect_row(img, map_2d, map_width, map_height);
+    connect_column(img, map_2d, map_width, map_height);
 }
