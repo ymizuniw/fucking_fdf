@@ -1,38 +1,44 @@
 #include <includes/fdf.h>
 
 //pan and rotate event
-int key_pressed(int key, t_app *a)
+int key_pressed(int key, t_app *app)
 {
     if (key == XK_Shift_L || key == XK_Shift_R)
-        a->option->shift_on = 1;
+        app->option->shift_on = 1;
     if (key == XK_Left || key == XK_Right || key == XK_Up || key == XK_Down)
     {
-        if (a->option->shift_on)
+        if (app->option->shift_on)
         {
             if (key == XK_Left)
-                pan(a, -PAN_UNIT, 0);
-            if (key == XK_Right)
-                pan(a, PAN_UNIT, 0);
-            if (key == XK_Up)
-                pan(a, 0, PAN_UNIT);
-            if (key == XK_Down)
-                pan(a, 0, -PAN_UNIT);
+                app->mat->pan_x -= PAN_UNIT;
+            else if (key == XK_Right)
+                app->mat->pan_x += PAN_UNIT;
+            else if (key == XK_Up)
+                app->mat->pan_y -= PAN_UNIT;
+            else if (key == XK_Down)
+                app->mat->pan_y += PAN_UNIT;
         }
         else
         {
             if (key == XK_Left)
-                rotate_y(a, -ROT_UNIT);
-            if (key == XK_Right)
-                rotate_y(a, ROT_UNIT);            
-            if (key == XK_Up)
-                rotate_x(a, ROT_UNIT);
-            if (key == XK_Down)
-                rotate_x(a, -ROT_UNIT);
+                app->mat->theta_y -= ROT_UNIT;
+            else if (key == XK_Right)
+                app->mat->theta_y += ROT_UNIT;          
+            else if (key == XK_Up)
+                app->mat->theta_x += ROT_UNIT;
+            else if (key == XK_Down)
+                app->mat->theta_x -= ROT_UNIT;
         }
-        refresh(a);
     }
-    else if (key == XK_Escape)
-        destroy_exit(a);
+    if (key == XK_equal || key == XK_minus || key == XK_Escape)
+    {
+        if (key == XK_equal)
+            app->mat->scale *= SCALE_UNIT;
+        else if (key == XK_minus)
+                app->mat->scale /= SCALE_UNIT;
+        else if (key == XK_Escape)
+            destroy_exit(app);
+    }
     return (0);
 }
 
@@ -55,3 +61,5 @@ int	expose_hook(void *param)
 	draw_field(app);
 	return 0;
 }
+
+

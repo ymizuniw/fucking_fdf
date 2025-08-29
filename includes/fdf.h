@@ -25,6 +25,7 @@
 # define SIN30 0.5f
 # define PAN_UNIT 0.5f
 # define ROT_UNIT 0.5f
+# define SCALE_UNIT 1.1f;
 
 //parse map
 typedef struct s_map_info
@@ -60,10 +61,9 @@ typedef struct s_matrix
 	float	theta_y;
 	float	theta_z;
 	float	scale;
-	float	shift_x;
-	float	shift_y;
-	float	shift_z;
-	float	theta_unit;
+	float	pan_x;
+	float	pan_y;
+	float	pan_z;
 }			t_matrix;
 
 typedef struct s_map
