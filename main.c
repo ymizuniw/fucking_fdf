@@ -80,39 +80,18 @@ void	mlx_app_work(t_app *app)
 	distroy_app(&app);
 }
 
-int	prepare_map(char *argv, t_app *app)
+void alloc_app_content(t_app *app)
 {
-	int	**map_orig;
-
-	map_orig = NULL;
-	w_parse_map(argv, &map_orig, app->map);
-	app->map->map_size = app->map->width * app->map->height;
-	w_set_map_3d(map_orig, app);
-	app->map->map_2d = malloc(sizeof(t_map_2d) * app->map->map_size);
-	if (!app->map->map_2d)
-	{
-		free_double_array(app->map->map_3d);
-		free(app->map->map_3d);
-		return (-1);
-	}
-	return (0);
+	app->map = malloc(sizeof(t_map));
+	if (app->map == NULL)
+		perror_exit();
+	app->mat = malloc(sizeof(t_matrix));
+	if (app->mat == NULL)
+		free_exit();
+	app->img = malloc(sizeof(t_img));
+	if (app->img == NULL)
+		free_exit();
 }
-
-//convert 3d vector to 2d
-void	convert_map(t_app *app)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < app->map->map_size)
-	{
-		app->map->map_2d[i] = convert_points(app->map->map_3d[i], app->map->mat);
-		app->map->map_2d[i].color = app->map->color;
-		i++;
-	}
-}
-
-
 
 // entry point
 int	main(int argc, char **argv)
@@ -124,10 +103,8 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Usage: ./fdf map_file.fdf\n", 2);
 		return (1);
 	}
-	if (prepare_map(argv[1], &app) < 0)
-		free_map(&app);
-	// react to key events and set rotation angle,
-	// set_matrix(mat);
+	alloc_app_content(&app);
+	prepare_map(argv[1], &app);
 	mlx_app_work(&app);
 	return (0);
 }

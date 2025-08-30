@@ -115,6 +115,17 @@ typedef struct s_app
 	t_img	*img;
 }			t_app;
 
+typedef struct s_parse_list
+{
+   int             *int_array;
+   struct s_parse  *next;
+} t_parse_list;
+
+//parse map functions
+
+t_parse_list *get_int_array_list(t_parse_list *head, int fd);
+
+
 //key event
 int key_pressed(int key, t_app *a);
 int key_released(int key, t_app *a);
