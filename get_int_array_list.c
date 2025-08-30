@@ -27,12 +27,12 @@ t_parse_list *get_int_array_list(t_parse_list *head, int fd)
    while (1)
    {
        line = get_next_line(fd);
-       if (NULL)
+       if (line == NULL)
            break ;
        //split line in to int array
        int_array = split_line(line);
        if (add_int_array_tail(head, int_array) < 0)
-           return (-1);
+           return (NULL);
    }
    return (head);
 }

@@ -31,16 +31,18 @@ size_t get_map_height(t_parse_list *head)
 // Resources delt with here is : char **orig_map, t_parse_list *head, t_app *app.
 // If error has occurred, release them correctly.
 
-void alloc_map_3d(t_app *app, t_parse_list *head, char **orig_map)
+void alloc_maps(t_app *app, t_parse_list *head, char **orig_map)
 {
    //width
    app->map->width = get_map_width(head->int_array);
    //height
    app->map->height = get_map_height(head);
+   app->map->map_size = app->map->width + app->map->height;
    //set map 3d
-   app->map->map_3d = malloc(sizeof(t_map_3d) * (app->map->width * app->map->width));
+   app->map->map_3d = malloc(sizeof(t_map_3d) * (app->map->map_size));
    if (!app->map->map_3d)
         free_and_exit();
+    app->map->map_2d = malloc(sizeof(t_map_2d) * (app->map->map_size));
 }
 
 //set
@@ -67,7 +69,7 @@ int wopen(const char *path)
 {
     int fd;
 
-    fd = open(path);
+    fd = open(path, O_RDONLY);
     if (fd < 0)
         perror_exit();
     return (fd);
@@ -98,7 +100,7 @@ void parse_map(const char *map_path, t_app *app)
     
     head = alloc_head(map_orig);
     get_int_array_list(head, fd);
-    alloc_map_3d(app, head, orig_map);
+    alloc_map_3d(app, head, map_orig);
     set_map_3d(app, head);
 }
 

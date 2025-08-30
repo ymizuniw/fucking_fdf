@@ -18,7 +18,6 @@ void	free_all_resources(t_app *app)
 }
 
 //free vectors
-
 void free_map(app)
 {
 	//original map : 
