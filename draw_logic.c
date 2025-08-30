@@ -58,8 +58,8 @@ static void connect_column(t_img *img, t_map_2d *map_2d, int map_width, int map_
     }
 }
 
-void draw_map(t_img *img, t_map_2d *map_2d,int map_width, int map_height)
+void draw_map(t_app *app)
 {
-    connect_row(img, map_2d, map_width, map_height);
-    connect_column(img, map_2d, map_width, map_height);
+    connect_row(app->img, app->map->map_2d, app->map->width, app->map->height);
+    connect_column(app->img, app->map->map_2d, app->map->width, app->map->height);
 }

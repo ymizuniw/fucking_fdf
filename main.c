@@ -42,8 +42,7 @@ void redraw(t_app *app)
 {
 	clear_img(app->img);
 	convert_map(app);
-	draw_map(app->img, app->map->map_2d, app->map->map_width, app->map->map_height);
-
+	draw_map(app);
 }
 
 // Initialize MiniLibX establish the connection between software and hardware
@@ -75,8 +74,7 @@ void	mlx_app_work(t_app *app)
 	img.data_addr = mlx_get_data_addr(img.img_ptr, &img.bits_per_pixel,
 			&img.size_line, &img.endian);
 	app->img = &img;
-	draw_map(&img, app->map->map_2d, app->map->width,
-		app->map->height);
+	draw_map(app);
 	mlx_hook(app->win_ptr, KEYPRESS, KEYPRESSMASK, key_pressed, &app);
 	mlx_loop(app->mlx_ptr);
 	distroy_app(&app);
@@ -89,8 +87,7 @@ int	prepare_map(char *argv, t_app *app)
 	map_orig = NULL;
 	w_parse_map(argv, &map_orig, app->map);
 	app->map->map_size = app->map->width * app->map->height;
-	w_set_map_3d(map_orig, app->map->map_3d, app->map, app->map->color);
-	w_set_map_2d(app->map->map_3d, app->map->map_size, app->map->color);
+	w_set_map_3d(map_orig, app);
 	app->map->map_2d = malloc(sizeof(t_map_2d) * app->map->map_size);
 	if (!app->map->map_2d)
 	{
@@ -101,6 +98,7 @@ int	prepare_map(char *argv, t_app *app)
 	return (0);
 }
 
+//convert 3d vector to 2d
 void	convert_map(t_app *app)
 {
 	size_t	i;
@@ -108,11 +106,13 @@ void	convert_map(t_app *app)
 	i = 0;
 	while (i < app->map->map_size)
 	{
-		app->map->map_2d[i] = convert_object(app->map->map_3d[i], app->map->mat);
+		app->map->map_2d[i] = convert_points(app->map->map_3d[i], app->map->mat);
 		app->map->map_2d[i].color = app->map->color;
 		i++;
 	}
 }
+
+
 
 // entry point
 int	main(int argc, char **argv)
@@ -124,7 +124,8 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Usage: ./fdf map_file.fdf\n", 2);
 		return (1);
 	}
-	prepare_map(argv[1], &app);
+	if (prepare_map(argv[1], &app) < 0)
+		free_map(&app);
 	// react to key events and set rotation angle,
 	// set_matrix(mat);
 	mlx_app_work(&app);

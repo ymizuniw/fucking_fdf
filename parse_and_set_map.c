@@ -49,15 +49,16 @@ static t_map_3d	*set_map_3d(int **map_orig, int width, int height, int color)
 }
 
 //wrapper function of set_map_3d()
-int	w_set_map_3d(int **map_orig, t_map_3d *map_3d, t_map_info *map_info, int color)
+
+//this may need to receive app and set the map information to it.
+int	w_set_map_3d(int **map_orig, t_app *app)
 {
-    map_3d = set_map_3d(map_orig, map_info->width, map_info->height, color);
-    if (!map_3d)
+    app->map->map_3d = set_map_3d(map_orig, app->map->width, app->map->height, app->color);
+    if (!app->map->map_3d)
     {
-        free_map_orig(map_3d);
+        free_map_orig(app->map->map_3d);
         return (-1);
     }
     return (0);
 }
-
-void set_map_2d();
+                                                                                      

@@ -83,4 +83,3 @@ void	draw_line(t_img *img, t_map_2d *start, t_map_2d *end)
 		y_major_axis(&dl, img, start, end);
 	put_pixel(img, dl.x, dl.y, start->color);
 }
-

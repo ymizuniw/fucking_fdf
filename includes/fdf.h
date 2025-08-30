@@ -21,18 +21,14 @@
 #define XK_Shift_R		0xFFE2	/* Right shift */
 
 // the fixed angle for isometric projection
+# define PI 3.14159265358979323846
 # define COS30 0.86602540378f
 # define SIN30 0.5f
 # define PAN_UNIT 0.5f
 # define ROT_UNIT 0.5f
-# define SCALE_UNIT 1.1f;
-
-//parse map
-typedef struct s_map_info
-{
-	size_t	height;
-	size_t	width;
-} t_map_info;
+# define SCALE_UNIT 1.1f
+# define WIN_MAX 10000000
+# define SCALE_LIM 0.9f
 
 // vector and matrix info structure
 // z = map_3d[y][x];
@@ -63,7 +59,6 @@ typedef struct s_matrix
 	float	scale;
 	float	pan_x;
 	float	pan_y;
-	float	pan_z;
 }			t_matrix;
 
 typedef struct s_map
@@ -74,8 +69,6 @@ typedef struct s_map
 	size_t	width;
 	t_map_2d *map_2d;
 	t_map_3d *map_3d;
-	t_map_info *map_info;
-	t_matrix *mat;
 } t_map;
 
 //draw_line struct
@@ -127,12 +120,6 @@ int key_pressed(int key, t_app *a);
 int key_released(int key, t_app *a);
 
 //parse and set map
-void	initialize_map_info(t_map_info *map_info);
-void	free_double_array(char **row);
-int		**parse_map(char *map, t_map_info *map_info);
-t_map_3d	*set_map_3d(int **map_orig, int width, int height, int color);
-void	w_parse_map(char *map_file, char **map_orig, t_map_info *map_info);
-void	w_set_map_3d(int **map_orig, t_map_3d *map_3d, t_map_info *map_info, int color);
 
 //free and destroy app
 void free_app(t_app *app);
@@ -145,7 +132,7 @@ void		draw_scene(t_app *app);
 void		draw_map(t_img *img, t_map_2d *map_2d, int map_width, int map_height);
 
 // rotation matrix and isometric proj functions
-t_map_2d		convert_object(t_map_3d p, t_matrix *mat);
+t_map_2d		convert_points(t_map_3d p, t_matrix *mat);
 void			rotate_x(t_map_3d *p, float t);
 void			rotate_y(t_map_3d *p, float t);
 void			rotate_z(t_map_3d *p, float t);

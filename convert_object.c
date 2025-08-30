@@ -64,7 +64,7 @@ static t_map_2d	proj_iso(t_map_3d p)
 
 //define the point z(x,y) and then,
 //call convert_object() for all elements of map_3d
-t_map_2d		convert_object(t_map_3d p, t_matrix *mat)
+t_map_2d		convert_points(t_map_3d p, t_matrix *mat)
 {
 	t_map_2d	new;
 

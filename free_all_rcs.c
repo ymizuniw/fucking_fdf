@@ -16,3 +16,16 @@ void	free_all_resources(t_app *app)
 	if (app)
 		free(app);
 }
+
+//free vectors
+
+void free_map(app)
+{
+	//original map : 
+
+	//3d map
+
+	//2d map
+
+	//for all maps, ensure that they are with if (exist) condition.
+}
