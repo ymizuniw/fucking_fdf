@@ -56,20 +56,45 @@ the reason dst should be casted to *(unsigned int *) is,
 the content size is img->bits_per_pixel / 8 (bytes).
 bits_per_pixel is usually 4 bytes, but it differ if we use small endian.
 
-
 //Bresenham's algorithm の解説。
+長軸を主軸とすることで、直線の傾きが1未満になる。
+傾きに従い、分母が1ピクセル増加したときの分子の増加量を誤差として蓄積する。
+蓄積した誤差が分母1として0.5以上であれば、分子を1ピクセル増やし、誤差を分子1ピクセル分だけ調整する。
+この際、0.5は小数であり整数を単位とするピクセルを扱うには不適当なので、スケーリングして整数で扱う。
+スケーリングは、次のように行う。
 
-重要なのは、このアルゴリズム内においては、各判定式に於いてdx1 = 1が守られることである。生じる増加量は常に、直線の情報として与えられている固定数の(dy/dx) * 1である。よって、まず err_unit = dy/dxと定義する。両辺に2dxを掛けて、2dx * err_unit = 2dyとなり、err_unit = 2dyと再定義する。
+ステップバイステップで、傾きの式を調整しながら誤差の変化を見ていく。主軸の交換と符号の管理は入れていない。
 
-err_unit = 2dyは、毎回のループでerr として蓄積される。このerrが無変換時の0.5を超える時にy++;という処理を入れる。
-この相当する正数の値が分かっていない気がする。
-⇛等式変換に従い、この正数はdxであると分かる。このdxは、ループ内のsの増加量のことではなく、ループに入る前に求めた(x1 - x0)のことである。
+0.
+delta = dy/dx
+閾値：0.5
+x += 1
+err += dy/dx
+if (0.5 <= err)
+	y++; err -= 1;
 
-判定式：2dy > dx
-このとき、err1 = 2dy - dxとおくと、
-判定式:err1 > 0
-と表される。
-									終
+1.
+delta * dx = dy
+閾値：0.5dx
+x += 1
+err += dy
+if (0.5dx <= err)
+	y++; err -= dx;
+
+2.
+delta * dx * 2 = 2 * dy
+閾値：dx
+x += 1
+err += 2 * dy
+if (dx <= err)
+	y++; err -= 2 * dx;
+
+
+//回転角度のラップ
+回転角を（-PI <=　θ　< PI）に収めることをWrap, 正規化と言う。
+//if angle is larger than pi, -2pi,
+//else if angle is smaller than -pi, +2pi
+//therefore, use while loop to increment/decrement to the range of -pi<theta<pi.
 
 
 int pos = (y * size_line + x * (bits_per_pixel / 8))

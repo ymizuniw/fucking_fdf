@@ -80,7 +80,6 @@ typedef struct s_draw_line
 	int y;
 	int sign_x;
 	int sign_y;
-	int err;
 } t_draw_line;
 
 //img info struct. img_ptr is set by mlx_new_image,

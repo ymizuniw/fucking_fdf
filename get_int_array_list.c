@@ -30,7 +30,10 @@ t_parse_list *get_int_array_list(t_parse_list *head, int fd)
        if (line == NULL)
            break ;
        //split line in to int array
-       int_array = split_line(line);
+       int_array = ft_split_map(line);
+       free(line);
+       if (!int_array)
+            return (NULL);
        if (add_int_array_tail(head, int_array) < 0)
            return (NULL);
    }

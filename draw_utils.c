@@ -17,8 +17,8 @@ static void	initialize_draw_line_struct(t_draw_line *dl, t_map_2d *start, t_map_
 {
 	dl->x = (int)start->x;
 	dl->y = (int)start->y;
-	dl->dx = (int)end->x - start->x;
-	dl->dy = (int)end->y - start->y;
+	dl->dx = (int)end->x - (int)start->x;
+	dl->dy = (int)end->y - (int)start->y;
 	dl->sign_x = 1;
 	dl->sign_y = 1;
 	if (dl->dx < 0)
@@ -31,7 +31,6 @@ static void	initialize_draw_line_struct(t_draw_line *dl, t_map_2d *start, t_map_
 		dl->dy *= -1;
 		dl->sign_y *= -1;
 	}
-	// dl->err = 0;
 }
 
 //x major axis bresenham
@@ -42,11 +41,11 @@ static	void	x_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start, t_map_2d 
 	while (dl->x != (int)end->x)
 	{
 		put_pixel(img, dl->x, dl->y, start->color);
-		dl->err -= dl->dy;
-		if (dl->err < 0)
+		err -= dl->dy;
+		if (err < 0)
 		{
 			dl->y += dl->sign_y;
-			dl->err += dl->dx;
+			err += dl->dx;
 		}
 		dl->x += dl->sign_x;
 	}
@@ -60,11 +59,11 @@ static void y_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start, t_map_2d 
 	while (dl->y != (int)end->y)
 	{
 		put_pixel(img, dl->x, dl->y, start->color);
-		dl->err -= dl->dx;
-		if (dl->err < 0)
+		err -= dl->dx;
+		if (err < 0)
 		{
 			dl->x += dl->sign_x;
-			dl->err += dl->dy;
+			err += dl->dy;
 		}
 		dl->y += dl->sign_y;
 	}

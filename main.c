@@ -38,7 +38,7 @@ void	clear_img(t_img *img)
 	ft_bzero(img->data_addr, img->img_height * img->size_line);
 }
 
-void redraw(t_app *app)
+void refresh(t_app *app)
 {
 	clear_img(app->img);
 	convert_map(app);
@@ -65,19 +65,20 @@ void redraw(t_app *app)
 
 void	mlx_app_work(t_app *app)
 {
-	t_img	img;
-
 	// Initialize the FDF application >> init_mlx(app);
 	app->mlx_ptr = mlx_init();
 	app->win_ptr = mlx_new_window(app->mlx_ptr, 800, 600, "FDF");
-	img.img_ptr = mlx_new_image(app->mlx_ptr, 800, 600);
-	img.data_addr = mlx_get_data_addr(img.img_ptr, &img.bits_per_pixel,
-			&img.size_line, &img.endian);
-	app->img = &img;
-	draw_map(app);
-	mlx_hook(app->win_ptr, KEYPRESS, KEYPRESSMASK, key_pressed, &app);
+	app->img->img_width = 800;
+	app->img->img_height = 600;
+	app->img->img_ptr = mlx_new_image(app->mlx_ptr, 800, 600);
+	app->img->data_addr = mlx_get_data_addr(&app->img->img_ptr, &(app->img->bits_per_pixel),
+			&(app->img->size_line), &(app->img->endian));
+	refresh(app);
+	mlx_hook(app->win_ptr, KEYPRESS, KEYPRESSMASK, key_pressed, app);
+	mlx_hook(app->win_ptr, KEYRELEASE, KEYRELEASEMASK, key_released, app);
+	mlx_expose_hook(app->wind_ptr, expose_hook, app);
 	mlx_loop(app->mlx_ptr);
-	distroy_app(&app);
+	free_all_resources(app);
 }
 
 void alloc_app_content(t_app *app)

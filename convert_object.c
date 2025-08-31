@@ -64,14 +64,14 @@ static t_map_2d	proj_iso(t_map_3d p)
 
 //define the point z(x,y) and then,
 //call convert_object() for all elements of map_3d
-t_map_2d		convert_points(t_map_3d p, t_matrix *mat)
+t_map_2d		convert_points(t_map_3d ptr, t_matrix *mat)
 {
 	t_map_2d	new;
 
-	rotate_x(&p, mat->theta_x);
-	rotate_y(&p, mat->theta_y);
-	rotate_z(&p, mat->theta_z);
-	new = proj_iso(p);
+	rotate_x(&ptr, mat->theta_x);
+	rotate_y(&ptr, mat->theta_y);
+	rotate_z(&ptr, mat->theta_z);
+	new = proj_iso(ptr);
 	new.x *= mat->scale;
 	new.y *= mat->scale;
 	return (new);

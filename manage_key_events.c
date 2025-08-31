@@ -1,11 +1,15 @@
 #include <includes/fdf.h>
 
 //PROBLEM NOT SOLVED.
+//if angle is larger than pi, -2pi,
+//else if angle is smaller than -pi, +2pi
+//therefore, use while loop to increment/decrement to the range of -pi<theta<pi.
+
 static float round_pi(float theta)
 {
-    if (theta > (float)M_PI)
+    while (theta > (float)M_PI)
         theta -= 2.0f * (float)M_PI;
-    if (theta <= (float)M_PI)
+    while (theta <= (float)M_PI)
         theta += 2.0f * (float)M_PI;
     return (theta);
 }
@@ -70,6 +74,7 @@ int key_pressed(int key, t_app *app)
                 app->mat->theta_x -= ROT_UNIT;
             validate_angles(app);
         }
+        changed = 1;
     }
     //scale adjustment with boundary validation.
     if (key == XK_equal || key == XK_KP_Add || key == XK_minus || key == XK_KP_Subtract || key == XK_Escape)
@@ -87,9 +92,9 @@ int key_pressed(int key, t_app *app)
         else if (key == XK_Escape)
             destroy_exit(app);
         clamp_scale(app);
-        if (changed == 1)
-            refresh(app);
     }
+    if (changed == 1)
+        refresh(app);
     return (0);
 }
 
