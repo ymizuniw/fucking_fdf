@@ -21,4 +21,5 @@ void	alloc_app_content(t_app *app)
     if (!app->option)
         free_app(app, "malloc option structure failed\n");
     ft_bzero(app->option, sizeof(*app->option));
+    app->map->color = 0xFFFFFF;
 }
