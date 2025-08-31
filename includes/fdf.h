@@ -2,23 +2,27 @@
 # define FDF_H
 
 # include "../libft/includes/libft.h"
+# include "../libft/includes/get_next_line.h"
+# include "../libft/includes/ft_printf.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <mlx.h>
+# include <math.h>
+# include <fcntl.h>
 
 # define KEYPRESS 2
 # define KEYRELEASE 3
 # define KEYPRESSMASK (1L << 0)
 # define KEYRELEASEMASK (1L << 1)
 
-// key codes
-# define XK_Escape 0xFF1B
-# define XK_Left 0xFF51    /* Move left, left arrow */
-# define XK_Up 0xFF52      /* Move up, up arrow */
-# define XK_Right 0xFF53   /* Move right, right arrow */
-# define XK_Down 0xFF54    /* Move down, down arrow */
-# define XK_Shift_L 0xFFE1 /* Left shift */
-# define XK_Shift_R 0xFFE2 /* Right shift */
+// // key codes
+// # define XK_Escape 0xFF1B
+// # define XK_Left 0xFF51    /* Move left, left arrow */
+// # define XK_Up 0xFF52      /* Move up, up arrow */
+// # define XK_Right 0xFF53   /* Move right, right arrow */
+// # define XK_Down 0xFF54    /* Move down, down arrow */
+// # define XK_Shift_L 0xFFE1 /* Left shift */
+// # define XK_Shift_R 0xFFE2 /* Right shift */
 
 // the fixed angle for isometric projection
 # define PI 3.14159265358979323846
@@ -27,7 +31,7 @@
 # define PAN_UNIT 0.5f
 # define ROT_UNIT 0.5f
 # define SCALE_UNIT 1.1f
-# define WIN_MAX 10000000
+# define WIN_MAX 1000000
 # define SCALE_LIM 0.9f
 
 # define MALLOC_FAILURE "fatal! malloc failed."
@@ -49,11 +53,6 @@ typedef struct s_map_2d
 	int					color;
 }						t_map_2d;
 
-// t_matrix keeps the accumulated quantity of rotation and scale.
-// so, the type should be defined as t_matrix *var;
-
-// rotation max and min angle are set? 2 pi
-	-> 0 pi loop should be set for each axis.
 typedef struct s_matrix
 	{
 		float			theta_x;
@@ -117,16 +116,25 @@ typedef struct s_matrix
 		t_img			*img;
 	} t_app;
 
+	typedef struct s_split_map
+	{
+		size_t i;
+		size_t j;
+		size_t start;
+		size_t end;
+	} t_split_map;
+
 	typedef struct s_parse_list
 	{
 		int				*int_array;
-		struct s_parse	*next;
+		struct s_parse_list	*next;
 	} t_parse_list;
 
 	// initial setup
 	void alloc_app_content(t_app *app);
 
 	// parse map functions
+	void alloc_maps(t_app *app, t_parse_list *head);
 	int *ft_split_map(char *s);
 	t_parse_list *get_int_array_list(t_parse_list *head, int fd);
 
@@ -137,9 +145,9 @@ typedef struct s_matrix
 	int key_pressed(int key, t_app *a);
 	void direction_shift(int key, t_app *app);
 	void direction_mono(int key, t_app *app);
-	void	plus_minus_scale(int key, t_app *app);
+	void plus_minus_scale(int key, t_app *app);
 	int key_released(int key, t_app *app);
-	int	expose_hook(void *param);
+	int expose_hook(void *param);
 
 	void free_map(t_app *app);
 
@@ -151,13 +159,16 @@ typedef struct s_matrix
 	// rotation matrix and isometric proj functions
 	t_map_2d convert_points(t_map_3d ptr, t_matrix *mat);
 
-	//free resources and exit
-	void free_all_resources(t_app *app) void destroy_app(t_app *app);
+	// free resources and exit
+	void free_all_rscs(t_app *app);
+	void free_all_rscs_exit(t_app *app, int status);
+	void destroy_app(t_app *app);
 	void perror_exit(char *msg);
 
 	// draw map
 	void draw_map(t_app *app);
 	void draw_line(t_img *img, t_map_2d *start, t_map_2d *end);
+	void	refresh(t_app *app);
 
 	// others
 	int wopen(const char *path);

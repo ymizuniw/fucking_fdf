@@ -95,7 +95,6 @@ int mlx_loop_end (void *mlx_ptr);
 **   key_hook(int keycode, void *param);
 **   mouse_hook(int button, int x,int y, void *param);
 **   loop_hook(void *param);
-/*
 **  Usually asked...
 */
 

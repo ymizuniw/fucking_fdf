@@ -6,7 +6,7 @@ int wopen(const char *path)
 
     fd = open(path, O_RDONLY);
     if (fd < 0)
-        perror_exit();
+        perror_exit("open");
     return (fd);
 }
 

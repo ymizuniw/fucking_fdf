@@ -4,11 +4,17 @@ NAME		=	fdf
 # Compiler
 CC			=	cc
 CFLAGS		= 	-Wall -Wextra -Werror -Iincludes
-INC 		= 	-Iincludes -Ilibft
+INC 		= 	-Iincludes -Ilibft/includes
+CFLAGS		+=	$(INC)
 
 LIBFT_DIR	= libft
 
-SRCS		=	main.c free_all_rcs.c put_pixel.c
+SRCS		=	main.c alloc_app_content.c draw_map.c prepare_map.c \
+				alloc_maps.c convert_map.c free_all_rcs.c manage_key_events.c refresh.c \
+				convert_points.c ft_split_map.c mlx_app_work.c \
+				direction_mono.c get_int_array_list.c  parse_map.c w_open_close.c \
+				direction_shift.c perror_exit.c \
+				draw_line.c plus_minus_scale.c
 OBJS 		=	$(SRCS:.c=.o)
 
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -29,7 +35,7 @@ clean:
 
 fclean:		clean
 			rm -f $(NAME)
-			make fclean $(LIBFT_DIR)
+			make -C $(LIBFT_DIR) fclean
 
 re:			fclean all
 

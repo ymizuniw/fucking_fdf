@@ -15,7 +15,7 @@ void	convert_map(t_app *app)
 	i = 0;
 	while (i < app->map->map_size)
 	{
-		app->map->map_2d[i] = convert_points(app->map->map_3d[i], app->map->mat);
+		app->map->map_2d[i] = convert_points(app->map->map_3d[i], app->mat);
         centering_screen(&app->map->map_2d[i], app);
 		app->map->map_2d[i].color = app->map->color;
 		i++;

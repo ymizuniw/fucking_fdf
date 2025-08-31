@@ -22,7 +22,7 @@
 //各行について隣接する点をワイヤーで接続
 //各列について隣接する点をワイヤーで接続
 
-static void connect_row(t_img *img, t_map_2d *map_2d, int map_width, int map_height)
+static void connect_row(t_img *img, t_map_2d *map_2d, size_t map_width, size_t map_height)
 {
     size_t y;
     size_t x;
@@ -40,7 +40,7 @@ static void connect_row(t_img *img, t_map_2d *map_2d, int map_width, int map_hei
     }
 }
 
-static void connect_column(t_img *img, t_map_2d *map_2d, int map_width, int map_height)
+static void connect_column(t_img *img, t_map_2d *map_2d, size_t map_width, size_t map_height)
 {
     size_t y;
     size_t x;

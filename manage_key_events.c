@@ -1,4 +1,4 @@
-#include <includes/fdf.h>
+#include "includes/fdf.h"
 
 //pan and rotate event
 int key_pressed(int key, t_app *app)
@@ -17,11 +17,11 @@ int key_pressed(int key, t_app *app)
     }
     if (key == XK_equal || key == XK_KP_Add || key == XK_minus || key == XK_KP_Subtract)
     {
-
+        plus_minus_scale(key, app);
         changed = 1;
     }
     else if (key == XK_Escape)
-        destroy_exit(app);
+        free_all_rscs_exit(app, 0);
     if (changed == 1)
         refresh(app);
     return (0);

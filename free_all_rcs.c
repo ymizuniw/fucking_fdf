@@ -1,6 +1,18 @@
 #include "includes/fdf.h"
 
-void	free_all_resources(t_app *app)
+//free vectors
+void free_map(t_app *app)
+{
+	if (!app || !app->map)
+		return ;
+	if(app->map->map_2d)
+		free(app->map->map_2d);
+	if (app->map->map_3d)
+		free(app->map->map_3d);
+	free(app->map);
+}
+
+void	free_all_rscs(t_app *app)
 {
 	if (app && app->mlx_ptr && app->win_ptr)
 		mlx_destroy_window(app->mlx_ptr, app->win_ptr);
@@ -17,14 +29,8 @@ void	free_all_resources(t_app *app)
 		mlx_destroy_image(app->mlx_ptr, app->img->img_ptr);
 }
 
-//free vectors
-void free_map(t_app *app)
+void free_all_rscs_exit(t_app *app, int status)
 {
-	if (!app || !app->map)
-		return ;
-	if(app->map->map_2d)
-		free(app->map->map_2d);
-	if (app->map->map_3d)
-		free(app->map->map_3d);
-	free(map);
+	free_all_rscs(app);
+	exit(status);
 }
