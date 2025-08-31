@@ -6,9 +6,7 @@ static void	put_pixel(t_img *img, int x, int y, int color)
 {
 	if (x < 0 || x >= img->img_width || y < 0 || y >= img->img_height)
 		return ;
-	//1 byte ptr designated by coordination information. the increment unit is 1byte.
 	char *dst = img->data_addr + (y * img->size_line + x * (img->bits_per_pixel / 8));
-	//4bytes data set from dst. 
 	*(unsigned int *)dst = color;
 }
 

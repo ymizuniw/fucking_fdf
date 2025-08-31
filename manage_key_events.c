@@ -38,6 +38,6 @@ int key_released(int key, t_app *a)
 int	expose_hook(void *param)
 {
 	t_app *app = (t_app *)param;
-	draw_map(app);
+	refresh(app);
 	return 0;
 }

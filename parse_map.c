@@ -110,11 +110,11 @@ static t_parse_list *alloc_head(void)
     return (head);
 }
 
-void close_free_exit(int fd, t_app *app)
+void close_free_exit(int fd, t_app *app, const char *msg)
 {
     if (app->mat)
 		free(app->mat);
-	free_map(app);
+	free_all_rscs(app, msg);
     wclose(fd);
     perror_exit("fatal! parse_map failed.");
 }
@@ -128,9 +128,9 @@ void parse_map(const char *map_path, t_app *app)
     
     head = alloc_head();
     if (!head)
-        close_free_exit(fd, app);
+        close_free_exit(fd, app, "malloc head failed\n");
     if (!get_int_array_list(head, fd))
-        close_free_exit(fd, app);
+        close_free_exit(fd, app, "get_int_array_list failed\n");
     wclose(fd);
     debug_dump_parsed_list(head);
     alloc_maps(app, head);

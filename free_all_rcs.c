@@ -12,8 +12,25 @@ void free_map(t_app *app)
 	free(app->map);
 }
 
-void	free_all_rscs(t_app *app)
+void	free_app(t_app *app, const char *msg)
 {
+	if (app->map)
+		free_map(app);
+	if (app->mat)
+		free(app->mat);
+	if (app->img)
+		free(app->img);
+    if (app->option)
+        free(app->option);
+    free(app);
+	ft_putstr_fd((char *)msg, 2);
+}
+
+void	free_all_rscs(t_app *app, const char *msg)
+{	
+	free_app(app, msg);
+	if (app && app->img->img_ptr)
+		mlx_destroy_image(app->mlx_ptr, app->img->img_ptr);
 	if (app && app->mlx_ptr && app->win_ptr)
 		mlx_destroy_window(app->mlx_ptr, app->win_ptr);
 	if (app && app->mlx_ptr)
@@ -21,16 +38,10 @@ void	free_all_rscs(t_app *app)
 		mlx_destroy_display(app->mlx_ptr);
 		free(app->mlx_ptr);
 	}
-	if (app->mat)
-		free(app->mat);
-	free_map(app);
-	// Free image resources
-	if (app && app->img->img_ptr)
-		mlx_destroy_image(app->mlx_ptr, app->img->img_ptr);
 }
 
 void free_all_rscs_exit(t_app *app, int status)
 {
-	free_all_rscs(app);
+	free_all_rscs(app, "fuck\n");
 	exit(status);
 }

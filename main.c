@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 	alloc_app_content(&app);
 	fprintf(stderr, "alloc app content\n");
 	prepare_map(argv[1], &app);
-	fprintf(stderr, "prepare map\n");
+	fprintf(stderr, "prepare map pasesd\n");
 	mlx_app_work(&app);
 	fprintf(stderr, "mlx_app_work passed\n");
 	return (0);

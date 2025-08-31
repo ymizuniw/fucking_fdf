@@ -4,7 +4,7 @@ static float	round_pi(float theta)
 {
 	while (theta > (float)M_PI)
 		theta -= 2.0f * (float)M_PI;
-	while (theta <= (float)M_PI)
+	while (theta <= -(float)M_PI)
 		theta += 2.0f * (float)M_PI;
 	return (theta);
 }
