@@ -2,7 +2,7 @@
 
 //mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
 //dst holds the infromation of color of the designated pixel.
-void	put_pixel(t_img *img, int x, int y, int color)
+static void	put_pixel(t_img *img, int x, int y, int color)
 {
 	if (x < 0 || x >= img->img_width || y < 0 || y >= img->img_height)
 		return ;

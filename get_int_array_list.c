@@ -1,7 +1,7 @@
 #include "includes/fdf.h"
 
 //function to create node and set the int_array
-int add_int_array_tail(t_parse_list *head, int *int_array)
+static int add_int_array_tail(t_parse_list *head, int *int_array)
 {
    t_parse_list *new;
   

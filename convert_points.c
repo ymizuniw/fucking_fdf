@@ -1,24 +1,5 @@
 #include "includes/fdf.h"
 
-// keep x
-// {
-//     1       0       0
-//     0     cos(t)    -sin(t)
-//     0     sin(t)    cos(t)
-// }
-// keep y
-// {
-//     cos(t)      0       sin(t)
-//     0           1       0
-//     -sin(t)     0       cos(t)
-// }
-// keep z
-// {
-//     cos(t)      -sin(t)     0
-//     sin(t)      cos(t)      0
-//     0           0           1
-// }
-
 static void	rotate_x(t_map_3d *p, float t)
 {
     float tmp_y;

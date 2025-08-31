@@ -56,6 +56,26 @@ the reason dst should be casted to *(unsigned int *) is,
 the content size is img->bits_per_pixel / 8 (bytes).
 bits_per_pixel is usually 4 bytes, but it differ if we use small endian.
 
+//Rotation Matrix
+ keep x
+{
+    1       0       0
+    0     cos(t)    -sin(t)
+    0     sin(t)    cos(t)
+}
+keep y
+{
+    cos(t)      0       sin(t)
+    0           1       0
+    -sin(t)     0       cos(t)
+}
+keep z
+{
+    cos(t)      -sin(t)     0
+    sin(t)      cos(t)      0
+    0           0           1
+}
+
 //Bresenham's algorithm の解説。
 長軸を主軸とすることで、直線の傾きが1未満になる。
 傾きに従い、分母が1ピクセル増加したときの分子の増加量を誤差として蓄積する。
