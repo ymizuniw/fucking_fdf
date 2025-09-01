@@ -1,27 +1,5 @@
 #include "includes/fdf.h"
 
-//run on the map_2d and set two points to connect with wire for put_pixel function.
-
-// o -- o -- o -- o -- o -- o 
-// |    |    |    |    |    |
-// o -- o -- o -- o -- o -- o 
-// |    |    |    |    |    |
-// o -- o -- o -- o -- o -- o 
-// |    |    |    |    |    |
-// o -- o -- o -- o -- o -- o 
-
-// map[0,0] -- map[0,1]
-// |               |
-// map[1,0] -- map[1,1]
-
-// map(y,x) -- map(y, x + 1)
-// |               |
-// map(y + 1, x) -- map(y + 1, x + 1)
-
-//pixel_bufferへの書き込み
-//各行について隣接する点をワイヤーで接続
-//各列について隣接する点をワイヤーで接続
-
 static void connect_row(t_img *img, t_map_2d *map_2d, size_t map_width, size_t map_height)
 {
     size_t y;

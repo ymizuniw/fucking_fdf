@@ -13,17 +13,8 @@
 
 # define KEYPRESS 2
 # define KEYRELEASE 3
-# define KEYPRESSMASK (1L << 0)
-# define KEYRELEASEMASK (1L << 1)
-
-// // key codes
-// # define XK_Escape 0xFF1B
-// # define XK_Left 0xFF51    /* Move left, left arrow */
-// # define XK_Up 0xFF52      /* Move up, up arrow */
-// # define XK_Right 0xFF53   /* Move right, right arrow */
-// # define XK_Down 0xFF54    /* Move down, down arrow */
-// # define XK_Shift_L 0xFFE1 /* Left shift */
-// # define XK_Shift_R 0xFFE2 /* Right shift */
+# define KEYPRESSMASK 1
+# define KEYRELEASEMASK 2
 
 // the fixed angle for isometric projection
 # define PI 3.14159265358979323846
@@ -36,10 +27,10 @@
 
 # define WIN_WIDTH 1600
 # define WIN_HEIGHT 1200
-# define IMG_WIDTH 1600
-# define IMG_HEIGHT 1200
-# define PAN_LIM 800
-# define SLALE_LIM_L 100f
+# define IMG_WIDTH 1200
+# define IMG_HEIGHT 900
+# define PAN_LIM 600
+# define SCALE_LIM_L 100f
 # define SCALE_LIM_S 0.5f
 
 # define MALLOC_FAILURE "fatal! malloc failed."
@@ -124,14 +115,6 @@ typedef struct s_app
 	t_img				*img;
 }						t_app;
 
-typedef struct s_split_map
-{
-	size_t				i;
-	size_t				j;
-	size_t				start;
-	size_t				end;
-}						t_split_map;
-
 typedef struct s_parse_list
 {
 	int					*int_array;
@@ -157,8 +140,6 @@ void					plus_minus_scale(int key, t_app *app);
 int						key_released(int key, t_app *app);
 int						expose_hook(void *param);
 
-void					free_map(t_app *app);
-
 // parse and set map
 void					prepare_map(char *argv, t_app *app);
 void					parse_map(const char *map_path, t_app *app);
@@ -168,6 +149,8 @@ void					convert_map(t_app *app);
 t_map_2d				convert_points(t_map_3d ptr, t_matrix *mat);
 
 // free resources and exit
+void    				free_parse_list(t_parse_list *head);
+void					free_map(t_app *app);
 void					free_app(t_app *app, const char *msg);
 void					free_all_rscs(t_app *app, const char *msg);
 void					free_all_rscs_exit(t_app *app, int status);

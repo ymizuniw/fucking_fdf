@@ -1,6 +1,3 @@
-//そもそもコンセプトの理解に問題があった。例として提示されたモデルを見てみると、普通に点と点を繋いでおり、幅のあるオブジェクトを表示できるようにするのはマップ側の役割だ。
-なので、処理の流れは簡潔に、
-
 1.parse 3d map
 2.set 2d vector (rotation and isometric projection)
 3.set pixel buffer ()
@@ -9,7 +6,6 @@
 a.keyevents should delegate operation to rotation matrix function
 b.initialize and destrory mlx_ objects, and free all memory allocated variables and structures.
 c.gresp the whole structure and usage of mlx unique functions, what are given as argments, how does it work.
-
 
 ---
 
@@ -56,26 +52,6 @@ the reason dst should be casted to *(unsigned int *) is,
 the content size is img->bits_per_pixel / 8 (bytes).
 bits_per_pixel is usually 4 bytes, but it differ if we use small endian.
 
-//Rotation Matrix
- keep x
-{
-    1       0       0
-    0     cos(t)    -sin(t)
-    0     sin(t)    cos(t)
-}
-keep y
-{
-    cos(t)      0       sin(t)
-    0           1       0
-    -sin(t)     0       cos(t)
-}
-keep z
-{
-    cos(t)      -sin(t)     0
-    sin(t)      cos(t)      0
-    0           0           1
-}
-
 //Bresenham's algorithm の解説。
 長軸を主軸とすることで、直線の傾きが1未満になる。
 傾きに従い、分母が1ピクセル増加したときの分子の増加量を誤差として蓄積する。
@@ -109,13 +85,11 @@ err += 2 * dy
 if (dx <= err)
 	y++; err -= 2 * dx;
 
-
 //回転角度のラップ
 回転角を（-PI <=　θ　< PI）に収めることをWrap, 正規化と言う。
 //if angle is larger than pi, -2pi,
 //else if angle is smaller than -pi, +2pi
 //therefore, use while loop to increment/decrement to the range of -pi<theta<pi.
-
 
 int pos = (y * size_line + x * (bits_per_pixel / 8))
 
@@ -135,8 +109,69 @@ bits_per_pixel / 8　は、１ピクセルあたりのbit数を、byte 単位に
 pos = y * size_line + x * bytes_per_pixel
 によって参照したいピクセルのポインタが得られる。
 
-
 //mlx_hook, mlx_key_hook, mlx_loop()　の処理の流れ
 
 すべてのイベント処理関数を登録し、その後にloopを開始することで、mlx_loop_end()が呼ばれるか、
 プログラムが終了するまでイベントリスナーが開かれた状態になる。
+
+
+
+<LINE DRAWING ALGORITYM>
+//run on the map_2d and set two points to connect with wire for put_pixel function.
+
+// o -- o -- o -- o -- o -- o 
+// |    |    |    |    |    |
+// o -- o -- o -- o -- o -- o 
+// |    |    |    |    |    |
+// o -- o -- o -- o -- o -- o 
+// |    |    |    |    |    |
+// o -- o -- o -- o -- o -- o 
+
+// map[0,0] -- map[0,1]
+// |               |
+// map[1,0] -- map[1,1]
+
+// map(y,x) -- map(y, x + 1)
+// |               |
+// map(y + 1, x) -- map(y + 1, x + 1)
+
+//pixel_bufferへの書き込み
+//各行について隣接する点をワイヤーで接続
+//各列について隣接する点をワイヤーで接続
+
+
+
+<History>
+// bool draw_map(t_img *img)
+// {
+// 	//draw maps
+// 	//draw
+// 	1. draw_lines
+// 	2. draw_line
+// 	//proj_3d_to_2d
+// 	1. convert<proj> 3d vector to 2d vector
+// display and the centre of object coordination is fixed
+
+// //additional features for convert<proj> section.
+// 	//another object
+// 	1. project one more object with the same condition or light version
+// 	//rotation
+// 	1. rotation_matrix_multiplication to 3d vector
+// 		//keys
+// 			:shift click + direction key up/down/left/right
+// 	//translation
+// 	1. horizontal -> +x
+// 	2. virtical -> +y
+// 		//keys
+// 		:left/right
+// 		:up/down
+// 	//scale
+// 	1. scalar multiplication for 2d vector
+// 		//keys
+// 		:if it is not complex, straight forward/backward wheel.
+// 		:if it is, +/-
+// 	//color
+// 	1. add some color to "the another object"
+// 		:shift + r/g/b
+// }
+

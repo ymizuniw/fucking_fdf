@@ -1,5 +1,19 @@
 #include "includes/fdf.h"
 
+void    free_parse_list(t_parse_list *head)
+{
+    t_parse_list *next;
+
+    while (head)
+    {
+        next = head->next;
+        if (head->int_array)
+            free(head->int_array);
+        free(head);
+        head = next;
+    }
+}
+
 //free vectors
 void free_map(t_app *app)
 {
@@ -14,6 +28,8 @@ void free_map(t_app *app)
 
 void	free_app(t_app *app, const char *msg)
 {
+	if (!app)
+		return ;
 	if (app->map)
 		free_map(app);
 	if (app->mat)
@@ -21,9 +37,7 @@ void	free_app(t_app *app, const char *msg)
 	if (app->img)
 		free(app->img);
     if (app->option)
-	{
 		free(app->option);
-	}
 	ft_putstr_fd(msg, 2);
 }
 
@@ -43,6 +57,6 @@ void	free_all_rscs(t_app *app, const char *msg)
 
 void free_all_rscs_exit(t_app *app, int status)
 {
-	free_all_rscs(app, "fuck\n");
+	free_all_rscs(app, "\n");
 	exit(status);
 }

@@ -11,93 +11,50 @@ static size_t	count_elem(char *s)
 	count = 0;
 	while (s[i] && s[i] != '\n')
 	{
-		if (ft_isdigit(s[i]) != 1)
+		while (s[i] && s[i] == ' ')
+			i++;
+		if (!s[i] || s[i] == '\n')
+			break ;
+		if (s[i] == '+' || s[i] == '-')
+			i++;
+		if (!ft_isdigit((unsigned char)s[i]))
 			return (0);
 		while (ft_isdigit((unsigned char)s[i]))
 			i++;
 		count++;
-		if (s[i] == ' ')
-		{
-			i++;
-			if (ft_isdigit(s[i]) != 1)
-				return (0);
-		}
-		else if ((s[i] != '\0') && (s[i] != '\n'))
-				return (0);
+		if (s[i] && s[i] != '\n' && s[i] != ' ')
+			return (0);
 	}
 	return (count);
 }
 
-// why cast to long?
-static int	get_num(char *s, size_t start, size_t end)
+static void free_double_array(char **s)
 {
-	long	res;
+	size_t k;
 
-	res = 0;
-	while (end > start)
-	{
-		res = res * 10 + s[start] - '0';
-		start++;
-	}
-	return ((int)res);
+	k = 0;
+	while (s[k])
+		free(s[k++]);
+	free(s[k]);
 }
 
-static int element_validation(t_split_map *smap, char *s, size_t count)
-{
-	if (smap->j < count)
-	{
-		if (s[smap->i] != ' ')
-			return (-1);
-		smap->i++;
-	}
-	else
-	{
-		if (!(s[smap->i] == '\n' || s[smap->i] == '\0'))
-			return (-1);
-	}
-	return (1);
-}
-
-static void init_s_smap(t_split_map *smap)
-{
-	smap->i = 0;
-	smap->j = 0;
-	smap->start = 0;
-	smap->end = 0;
-}
-
-static int	*split_map(int *res, char *s, size_t count)
-{
-	t_split_map smap;
-
-	init_s_smap(&smap);
-	while (smap.j < count)
-	{
-		if (s[smap.i] == ' ')
-			smap.i++;
-		smap.start = smap.i;
-		while (ft_isdigit(s[smap.i]))
-			smap.i++;
-		smap.end = smap.i;
-		res[smap.j] = get_num(s, smap.start, smap.end);
-		smap.j++;
-		if (element_validation(&smap, s, count) < 0)
-			return (NULL);
-	}
-	res[count] = INT_MIN;
-	return (res);
-}
-
-int	*ft_split_map(char *s)
+int	*ft_(char *s)
 {
 	size_t	count;
+	size_t	j;
+	char	**n;
 	int		*res;
 
-	count = 0;
 	count = count_elem(s);
-	res = malloc(sizeof(int) * (count + 1));
+	res = malloc(sizeof(int) * (count));
 	if (!res)
 		return (NULL);
-	res = split_map(res, s, count);
+	n = ft_split(s, ' ');
+	if (!n)
+		return (free(res), NULL);
+	j = 0;
+	while (j < count)
+		res[j] = ft_atoi(n[j++]);
+	free_double_array(n);
 	return (res);
 }
