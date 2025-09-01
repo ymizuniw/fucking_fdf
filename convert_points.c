@@ -29,8 +29,8 @@ static void	rotate_z(t_map_3d *p, float t)
 
     tmp_x = p->x;
     tmp_y = p->y;
-	p->x = tmp_x * cos(t) - tmp_y * sin(t);
-	p->y = tmp_x * sin(t) + tmp_y * cos(t);
+	p->x = tmp_x * (float)cos(t) - tmp_y * (float)sin(t);
+	p->y = tmp_x * (float)sin(t) + tmp_y * (float)cos(t);
 }
 
 // isometric projection using angle t = 30;
@@ -49,11 +49,11 @@ t_map_2d		convert_points(t_map_3d ptr, t_matrix *mat)
 {
 	t_map_2d	new;
 
-	rotate_x(&ptr, mat->theta_x);
-	rotate_y(&ptr, mat->theta_y);
-	rotate_z(&ptr, mat->theta_z);
-	new = proj_iso(ptr);
 	new.x *= mat->scale;
 	new.y *= mat->scale;
+	rotate_z(&ptr, mat->theta_z);
+	rotate_y(&ptr, mat->theta_y);
+	rotate_x(&ptr, mat->theta_x);
+	new = proj_iso(ptr);
 	return (new);
 }

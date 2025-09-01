@@ -33,7 +33,14 @@
 # define ROT_UNIT 0.5f
 # define SCALE_UNIT 1.1f
 # define WIN_MAX 1000000
-# define SCALE_LIM 0.9f
+
+# define WIN_WIDTH 1600
+# define WIN_HEIGHT 1200
+# define IMG_WIDTH 1600
+# define IMG_HEIGHT 1200
+# define PAN_LIM 800
+# define SLALE_LIM_L 100f
+# define SCALE_LIM_S 0.5f
 
 # define MALLOC_FAILURE "fatal! malloc failed."
 
