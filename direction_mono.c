@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:44 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 00:08:34 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 02:44:11 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	direction_mono(int key, t_app *app)
 	else if (key == XK_Right)
 		rotation_adjustment(app, axis_z, ROT_UNIT);
 	else if (key == XK_Up)
-		rotation_adjustment(app, axis_x, -ROT_UNIT);
-	else if (key == XK_Down)
 		rotation_adjustment(app, axis_x, ROT_UNIT);
+	else if (key == XK_Down)
+		rotation_adjustment(app, axis_x, -ROT_UNIT);
 }

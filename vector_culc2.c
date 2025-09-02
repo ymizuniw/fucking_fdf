@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 22:09:46 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 22:23:58 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 02:34:37 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ t_mat3	mat3_identity(void)
 		while (j < 3)
 		{
 			if (i == j)
-				iden.m[i][j] = 1;
+				iden.m[i][j] = 1.f;
 			else
-				iden.m[i][j] = 0;
+				iden.m[i][j] = 0.f;
 			j++;
 		}
 		i++;
@@ -57,7 +57,7 @@ t_mat3	mat3_identity(void)
 	return (iden);
 }
 
-t_mat3	mat3_multiple(t_mat3 a, t_mat3 b)
+t_mat3	mat3_multiply(t_mat3 a, t_mat3 b)
 {
 	t_mat3	r;
 	size_t	i;

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:12:27 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 00:01:47 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 02:34:37 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,7 +222,7 @@ t_vec3					normalize(t_vec3 v);
 // vector utils1
 t_mat3					mat3_transpose(t_mat3 a);
 t_mat3					mat3_identity(void);
-t_mat3					mat3_multiple(t_mat3 a, t_mat3 b);
+t_mat3					mat3_multiply(t_mat3 a, t_mat3 b);
 t_vec3					mat3_apply(t_mat3 m, t_vec3 v);
 t_mat3					display_axis_rot(t_vec3 axis, float angle);
 
