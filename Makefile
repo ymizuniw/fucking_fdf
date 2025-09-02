@@ -14,7 +14,7 @@ SRCS		=	main.c alloc_app_content.c draw_map.c prepare_map.c \
 				convert_points.c ft_split_map.c mlx_app_work.c \
 				direction_mono.c get_int_array_list.c  parse_map.c w_open_close.c \
 				direction_shift.c perror_exit.c \
-				draw_line.c plus_minus_scale.c
+				draw_line.c plus_minus_scale.c rotation_adjustment.c orthonormalize.c
 OBJS 		=	$(SRCS:.c=.o)
 
 LIBFT = $(LIBFT_DIR)/libft.a

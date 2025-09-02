@@ -6,7 +6,7 @@ static size_t get_map_width(int *int_array)
    size_t count;
 
    count = 0;
-   while (int_array[count])
+   while (int_array[count] != INT_MIN)
        count++;
    return (count);
 }

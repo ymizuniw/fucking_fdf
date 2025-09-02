@@ -35,10 +35,10 @@ static void free_double_array(char **s)
 	k = 0;
 	while (s[k])
 		free(s[k++]);
-	free(s[k]);
+	free(s);
 }
 
-int	*ft_(char *s)
+int	*ft_split_map(char *s)
 {
 	size_t	count;
 	size_t	j;
@@ -46,7 +46,7 @@ int	*ft_(char *s)
 	int		*res;
 
 	count = count_elem(s);
-	res = malloc(sizeof(int) * (count));
+	res = malloc(sizeof(int) * (count + 1));
 	if (!res)
 		return (NULL);
 	n = ft_split(s, ' ');
@@ -54,7 +54,11 @@ int	*ft_(char *s)
 		return (free(res), NULL);
 	j = 0;
 	while (j < count)
-		res[j] = ft_atoi(n[j++]);
+	{
+		res[j] = ft_atoi(n[j]);
+		j++;
+	}
+	res[j] = INT_MIN;
 	free_double_array(n);
 	return (res);
 }

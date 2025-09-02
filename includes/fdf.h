@@ -20,7 +20,7 @@
 # define PI 3.14159265358979323846
 # define COS30 0.86602540378f
 # define SIN30 0.5f
-# define PAN_UNIT 0.5f
+# define PAN_UNIT 5.f
 # define ROT_UNIT 0.5f
 # define SCALE_UNIT 1.1f
 # define WIN_MAX 1000000
@@ -30,10 +30,20 @@
 # define IMG_WIDTH 1200
 # define IMG_HEIGHT 900
 # define PAN_LIM 600
-# define SCALE_LIM_L 100f
+# define SCALE_LIM_L 100.f
 # define SCALE_LIM_S 0.5f
 
 # define MALLOC_FAILURE "fatal! malloc failed."
+
+typedef struct s_mat3
+{
+	float				m[3][3];
+}						t_mat3;
+
+typedef struct s_vec3
+{
+	float x, y, z;
+}						t_vec3;
 
 // vector and matrix info structure
 // z = map_3d[y][x];
@@ -60,6 +70,7 @@ typedef struct s_matrix
 	float				scale;
 	float				pan_x;
 	float				pan_y;
+	t_mat3				usr;
 }						t_matrix;
 
 typedef struct s_map
@@ -147,9 +158,13 @@ void					convert_map(t_app *app);
 
 // rotation matrix and isometric proj functions
 t_map_2d				convert_points(t_map_3d ptr, t_matrix *mat);
+void					orthonormalize(t_mat3 *r);
+void					rotation_adjustment(t_app *app, t_vec3 axis_screen,
+							float delta);
+t_vec3					mat3_apply(t_mat3 m, t_vec3 v);
 
 // free resources and exit
-void    				free_parse_list(t_parse_list *head);
+void					free_parse_list(t_parse_list *head);
 void					free_map(t_app *app);
 void					free_app(t_app *app, const char *msg);
 void					free_all_rscs(t_app *app, const char *msg);

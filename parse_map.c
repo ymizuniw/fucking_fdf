@@ -60,4 +60,5 @@ void parse_map(const char *map_path, t_app *app)
     wclose(fd);
     alloc_maps(app, head);
     set_map_3d(app, head);
+    free_parse_list(head);
 }
