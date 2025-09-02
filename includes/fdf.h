@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:12:27 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 21:18:17 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/02 22:16:05 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,17 @@ typedef struct s_vec3
 	float				y;
 	float				z;
 }						t_vec3;
+
+typedef struct s_orthon
+{
+	t_vec3				a1;
+	t_vec3				a2;
+	t_vec3				proj;
+	t_vec3				u2_tmp;
+	t_vec3				u1;
+	t_vec3				u2;
+	t_vec3				u3;
+}						t_orthon;
 
 // vector and matrix info structure
 // z = map_3d[y][x];
@@ -146,6 +157,25 @@ typedef struct s_parse_list
 	struct s_parse_list	*next;
 }						t_parse_list;
 
+typedef struct s_set_map
+{
+	size_t				y;
+	size_t				x;
+	size_t				line_w;
+	size_t				i;
+	size_t				start;
+}						t_set_map;
+
+typedef struct s_axis_rot
+{
+	float				x;
+	float				y;
+	float				z;
+	float				c;
+	float				s;
+	float				t;
+}						t_axis_rot;
+
 // initial setup
 void					alloc_app_content(t_app *app);
 
@@ -154,6 +184,7 @@ void					alloc_maps(t_app *app, t_parse_list *head);
 int						*ft_split_map(char *s);
 t_parse_list			*get_int_array_list(t_parse_list *head, int fd);
 size_t					get_map_width(int *int_array);
+void					set_map_3d(t_app *app, t_parse_list *head);
 
 // mlx entry point
 void					mlx_app_work(t_app *app);
@@ -178,6 +209,19 @@ void					rotation_adjustment(t_app *app, t_vec3 axis_screen,
 							float delta);
 t_vec3					mat3_apply(t_mat3 m, t_vec3 v);
 t_mat3					mat3_identity(void);
+
+// vector utils1
+t_vec3					scl(t_vec3 v, float s);
+t_vec3					sub(t_vec3 a, t_vec3 b);
+float					dot(t_vec3 a, t_vec3 b);
+t_vec3					cross(t_vec3 a, t_vec3 b);
+t_vec3					normalize(t_vec3 v);
+// vector utils1
+t_mat3					mat3_transpose(t_mat3 a);
+t_mat3					mat3_identity(void);
+t_mat3					mat3_multiple(t_mat3 a, t_mat3 b);
+t_vec3					mat3_apply(t_mat3 m, t_vec3 v);
+t_mat3					display_axis_rot(t_vec3 axis, float angle);
 
 // free resources and exit
 void					free_parse_list(t_parse_list *head);

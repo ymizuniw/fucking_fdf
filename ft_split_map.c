@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:55 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 21:16:54 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/02 21:37:40 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static size_t	count_elem(char *s)
 
 static void	free_double_array(char **s)
 {
-	size_t k;
+	size_t	k;
 
 	k = 0;
 	while (s[k])

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:33 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 21:15:26 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/02 21:31:13 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static size_t	get_map_height(t_parse_list *head)
 	return (size);
 }
 
-static	void	free_and_exit(char *msg, t_app *app, t_parse_list *head)
+static void	free_and_exit(char *msg, t_app *app, t_parse_list *head)
 {
 	perror(msg);
 	free_parse_list(head);

@@ -1,42 +1,16 @@
-#include "fdf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 21:10:10 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/09/02 22:15:39 by ymizuniw         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	set_map_3d(t_app *app, t_parse_list *head)
-{
-	size_t	y;
-	size_t	x;
-	size_t	line_w;
-	size_t	i;
-	size_t	start;
-
-	head = head->next;
-	if (!head)
-		return ;
-	y = 0;
-	while (app->map->height > y && head)
-	{
-		x = 0;
-		start = y * app->map->width;
-		line_w = get_map_width(head->int_array);
-		while (line_w > x && app->map->width > x)
-		{
-			i = start + x;
-			app->map->map_3d[i].z = (float)head->int_array[x];
-			app->map->map_3d[i].x = (float)x;
-			app->map->map_3d[i].y = (float)y;
-			x++;
-		}
-		while (app->map->width > x)
-		{
-			i = start + x;
-			app->map->map_3d[i].z = 0.0f;
-			app->map->map_3d[i].x = (float)x;
-			app->map->map_3d[i].y = (float)y;
-			x++;
-		}
-		head = head->next;
-		y++;
-	}
-}
+#include "includes/fdf.h"
 
 // assure that head is non-null ptr
 static t_parse_list	*alloc_head(void)

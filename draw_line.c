@@ -6,24 +6,27 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:49 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 21:15:57 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/02 21:36:49 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fdf.h"
 
-//mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
-//dst holds the infromation of color of the designated pixel.
+// mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
+// dst holds the infromation of color of the designated pixel.
 static void	put_pixel(t_img *img, int x, int y, int color)
 {
+	char	*dst;
+
 	if (x < 0 || x >= img->img_width || y < 0 || y >= img->img_height)
 		return ;
-	char *dst = img->data_addr + (y * img->size_line + x * (img->bits_per_pixel / 8));
+	dst = img->data_addr + (y * img->size_line + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
-//draw_line function is based on Bresenham's line drawing algorithm.
-static void	initialize_draw_line_struct(t_draw_line *dl, t_map_2d *start, t_map_2d *end)
+// draw_line function is based on Bresenham's line drawing algorithm.
+static void	initialize_draw_line_struct(t_draw_line *dl, t_map_2d *start,
+		t_map_2d *end)
 {
 	dl->x = (int)start->x;
 	dl->y = (int)start->y;
@@ -43,10 +46,12 @@ static void	initialize_draw_line_struct(t_draw_line *dl, t_map_2d *start, t_map_
 	}
 }
 
-//x major axis bresenham
-static	void	x_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start, t_map_2d *end)
+// x major axis bresenham
+static void	x_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start,
+		t_map_2d *end)
 {
-	int err;
+	int	err;
+
 	err = dl->dx / 2;
 	while (dl->x != (int)end->x)
 	{
@@ -61,10 +66,12 @@ static	void	x_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start, t_map_2d 
 	}
 }
 
-//y major axis bresenham
-static void y_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start, t_map_2d *end)
+// y major axis bresenham
+static void	y_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start,
+		t_map_2d *end)
 {
-	int err;
+	int	err;
+
 	err = dl->dy / 2;
 	while (dl->y != (int)end->y)
 	{
@@ -79,11 +86,11 @@ static void y_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start, t_map_2d 
 	}
 }
 
-//draw_line() put pixels to img buffer by Bresenham's line algorithm.
-//start point and end point are given by t_map_2d struct.
+// draw_line() put pixels to img buffer by Bresenham's line algorithm.
+// start point and end point are given by t_map_2d struct.
 void	draw_line(t_img *img, t_map_2d *start, t_map_2d *end)
 {
-	t_draw_line dl;
+	t_draw_line	dl;
 
 	initialize_draw_line_struct(&dl, start, end);
 	if (dl.dx > dl.dy)

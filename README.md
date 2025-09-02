@@ -203,3 +203,42 @@ pos = y * size_line + x * bytes_per_pixel
 // 参考
 金沢工業大学、ロドリゲスの回転公式」
 https://w3e.kanazawa-it.ac.jp/math/physics/category/physical_math/linear_algebra/henkan-tex.cgi?target=/math/physics/category/physical_math/linear_algebra/rodrigues_rotation_matrix.html
+
+正規直交基底についての解説。
+// //大きさが１の一次独立なn個のベクトルによって成り立つ。
+// //|U_i| = 1 (i = 1,2...n)
+// //U_i・U_j = 0 (i = 0)
+
+// //why use
+// // 一次独立な二つのベクトルb,c について、内積b・cを考える。
+// // 正規直交基底であるならば、積に出てくる異なる基底ベクトルの内積が０、
+// //　同じ基底ベクトルの内積は1になる。
+
+// //how to use
+// あるベクトルa1がある。
+// 向きa1大きさ1 :u1 = a1 / det(a1);
+// a1 に平行でないベクトルa2がある。
+// a1と直交し、a2と交わるベクトルu2を考える。
+// なす角をthetaとし、
+// a2からa1への正射影ベクトルの長さ : |a2|cos(theta)・|u1| = a2・u1
+// u2' = a2 - (a2・u1)・u1
+// u2 = u2' / det(u2')
+
+// u1, u2で張られる平面sがある。
+// a1,a2に平行でないベクトルa3はこの平面の外にある。
+// a3からsへの正射影は、
+// 実数t,pを用いて、s*u1 + p*u2の和で表せる。
+
+// u1方向の長さ :a3・u1
+// u2方向の長さ :a3・u2
+// 正射影u1方向への正射影 :(a3・u1)u1
+// 正射影u2方向への正射影 :(a3・u2)u2
+
+// u3' = a3 - (a3・u1)u1 - (a3・u2)u2
+
+// u3 = u3' / det(u3')
+
+// 以下同様に、
+// uk' = ak - (ak・u1)u1 -(ak・u2)u2 - .... -(ak・u_k-1)u_k-1
+// uk = uk' / det(u'k)
+// をnまで行う。
