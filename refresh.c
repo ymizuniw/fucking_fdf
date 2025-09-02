@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:19 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 21:24:52 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/02 23:53:03 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void	refresh(t_app *app)
 	clear_img(app->img);
 	convert_map(app);
 	draw_map(app);
-	mlx_put_image_to_window(app->mlx_ptr, app->win_ptr, app->img->img_ptr, 0,
-		0);
+	mlx_put_image_to_window(app->mlx_ptr, app->win_ptr, app->img->img_ptr,
+		(WIN_WIDTH - IMG_WIDTH) / 2, (WIN_HEIGHT - IMG_HEIGHT) / 2);
 }

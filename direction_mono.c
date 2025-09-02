@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:44 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 22:22:32 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 00:08:34 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ t_vec3	get_axis_z(void)
 {
 	t_vec3	axis;
 
-	axis.x = 0;
-	axis.y = 0;
-	axis.z = 1;
+	axis.x = 0.f;
+	axis.y = 0.f;
+	axis.z = 1.f;
 	return (axis);
 }
 
@@ -26,9 +26,9 @@ t_vec3	get_axis_x(void)
 {
 	t_vec3	axis;
 
-	axis.x = 1;
-	axis.y = 0;
-	axis.z = 0;
+	axis.x = 1.f;
+	axis.y = 0.f;
+	axis.z = 0.f;
 	return (axis);
 }
 

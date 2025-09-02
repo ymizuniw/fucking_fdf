@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:12:27 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 22:16:05 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 00:01:47 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@
 # define WIN_HEIGHT 1200
 # define IMG_WIDTH 1200
 # define IMG_HEIGHT 900
-# define PAN_LIM 600
+# define PAN_LIM_W 600
+# define PAN_LIM_H 450
 # define SCALE_LIM_L 100.0f
 # define SCALE_LIM_S 0.5f
 
@@ -89,9 +90,9 @@ typedef struct s_map_2d
 
 typedef struct s_matrix
 {
-	float				theta_x;
-	float				theta_y;
-	float				theta_z;
+	// float				theta_x;
+	// float				theta_y;
+	// float				theta_z;
 	float				scale;
 	float				pan_x;
 	float				pan_y;
@@ -207,6 +208,8 @@ t_map_2d				convert_points(t_map_3d ptr, t_matrix *mat);
 void					orthonormalize(t_mat3 *r);
 void					rotation_adjustment(t_app *app, t_vec3 axis_screen,
 							float delta);
+// void					rotation_adjustment(t_app *app, t_vec3 axis_screen,
+// 							float delta, int yaw);
 t_vec3					mat3_apply(t_mat3 m, t_vec3 v);
 t_mat3					mat3_identity(void);
 
