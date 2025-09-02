@@ -33,7 +33,7 @@ typedef struct s_vec3
 } t_vec3;
 
 t_mat3 mat3_identity(void);
-t_mat3 mat3_mul(t_mat3 A, t_mat3 B);
+t_mat3 mat3_multiple(t_mat3 A, t_mat3 B);
 t_mat3 mat3_transpose(t_mat3 A);
 t_mat3 mat3_rot_axis(t_vec3 axis_unit, float angle);
 
@@ -55,6 +55,7 @@ t_mat3 mat3_transpose(t_mat3 a)
         }
         i++;
     }
+    return (ta);
 }
 
 t_mat3 mat3_identity(void)
@@ -71,7 +72,7 @@ t_mat3 mat3_identity(void)
         j = 0;
         while (j < 3)
         {
-            if (i = j)
+            if (i == j)
                 iden.m[i][j] = 1;
             else
                 iden.m[i][j] = 0;
@@ -79,7 +80,7 @@ t_mat3 mat3_identity(void)
         }
         i++;
     }
-    return (iden.m);
+    return (iden);
 }
 
 t_mat3 mat3_multiple(t_mat3 a, t_mat3 b)
@@ -98,6 +99,7 @@ t_mat3 mat3_multiple(t_mat3 a, t_mat3 b)
         j = 0;
         while (j < 3)
         {
+            k = 0;
             while (k < 3)
             {
                 r.m[i][j] += a.m[i][k]*b.m[k][j];
@@ -116,12 +118,13 @@ t_vec3 mat3_apply(t_mat3 m, t_vec3 v)
     rv.x = m.m[0][0]*v.x + m.m[0][1]*v.y + m.m[0][2]*v.z;
     rv.y = m.m[1][0]*v.x + m.m[1][1]*v.y + m.m[1][2]*v.z;
     rv.z = m.m[2][0]*v.x + m.m[2][1]*v.y + m.m[2][2]*v.z;
-    return (r);
+    return (rv);
 }
 
 t_mat3 display_axis_rot(t_vec3 axis, float angle)
 {
-    float len = sqrtf(axis.x*axis.x + axis.y*axis.y + axis.z*axis.z);
+    float len;
+    len = sqrtf(axis.x*axis.x + axis.y*axis.y + axis.z*axis.z);
     if (len < (float)(1e-8))
         return (mat3_identity());
     float x = axis.x/len;
@@ -152,9 +155,10 @@ static void rotation_adjustment(t_app *app, t_vec3 axis_screen, float delta)
 {
     t_mat3 B   = app->mat->base_rot;
     t_mat3 Rv  = display_axis_rot(axis_screen, delta);
-    t_mat3 Rw  = mat3_mul(mat3_transpose(B), mat3_mul(Rv, B)); // R_world = B^T * Rv * B
+    t_mat3 Rw  = mat3_mul(mat3_transpose(B), mat3_multiple(Rv, B)); // R_world = B^T * Rv * B
+    app->mat->user_rot = mat3_multiple(Rw, app->mat->user_rot);     // U = Rw * U
 
-    app->mat->user_rot = mat3_mul(Rw, app->mat->user_rot);     // U = Rw * U
+    orthonormalize(&app->mat);
 }
 
 void direction_mono(int key, t_app *app)
