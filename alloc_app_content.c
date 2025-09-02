@@ -10,8 +10,9 @@ void	alloc_app_content(t_app *app)
     ft_bzero(app->map, sizeof(*app->map));
 	app->mat = malloc(sizeof(t_matrix));
 	if (app->mat == NULL)
-		free_app(app, "malloc matrix\n");
+		free_app(app, "malloc matrix failed\n");
     ft_bzero(app->mat, sizeof(*app->mat));
+    app->mat->usr = mat3_identity();
     app->mat->scale = 1.0f;
 	app->img = malloc(sizeof(t_img));
 	if (app->img == NULL)

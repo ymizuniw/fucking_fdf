@@ -1,5 +1,14 @@
 #include "includes/fdf.h"
 
+static int close_pressed(void *param)
+{
+	t_app *app;
+
+	app = (t_app *)param;
+	free_all_rscs_exit(app, 0);
+	return (0);
+}
+
 void	mlx_app_work(t_app *app)
 {
 	app->mlx_ptr = mlx_init();
@@ -13,6 +22,7 @@ void	mlx_app_work(t_app *app)
 	refresh(app);
 	mlx_hook(app->win_ptr, KEYPRESS, KEYPRESSMASK, key_pressed, app);
 	mlx_hook(app->win_ptr, KEYRELEASE, KEYRELEASEMASK, key_released, app);
+	mlx_hook(app->win_ptr, DestroyNotify, NoEventMask, close_pressed, app);
 	mlx_expose_hook(app->win_ptr, expose_hook, app);
 	mlx_loop(app->mlx_ptr);
 }

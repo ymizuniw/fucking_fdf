@@ -20,8 +20,8 @@
 # define PI 3.14159265358979323846
 # define COS30 0.86602540378f
 # define SIN30 0.5f
-# define PAN_UNIT 5.f
-# define ROT_UNIT 0.5f
+# define PAN_UNIT 5.0f
+# define ROT_UNIT 0.01f
 # define SCALE_UNIT 1.1f
 # define WIN_MAX 1000000
 
@@ -139,6 +139,7 @@ void					alloc_app_content(t_app *app);
 void					alloc_maps(t_app *app, t_parse_list *head);
 int						*ft_split_map(char *s);
 t_parse_list			*get_int_array_list(t_parse_list *head, int fd);
+size_t					get_map_width(int *int_array);
 
 // mlx entry point
 void					mlx_app_work(t_app *app);
@@ -162,6 +163,7 @@ void					orthonormalize(t_mat3 *r);
 void					rotation_adjustment(t_app *app, t_vec3 axis_screen,
 							float delta);
 t_vec3					mat3_apply(t_mat3 m, t_vec3 v);
+t_mat3					mat3_identity(void);
 
 // free resources and exit
 void					free_parse_list(t_parse_list *head);

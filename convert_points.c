@@ -44,17 +44,12 @@
 // 	return (res);
 // }
 
-//define the point z(x,y) and then,
-//call convert_object() for all elements of map_3d
-t_map_2d		convert_points(t_map_3d ptr, t_matrix *mat)
+// define the point z(x,y) and then,
+// call convert_object() for all elements of map_3d
+t_map_2d	convert_points(t_map_3d ptr, t_matrix *mat)
 {
 	t_map_2d	new;
-
-	// rotate_z(&ptr, mat->usr->theta_z);
-	// rotate_y(&ptr, mat->theta_y);
-	// rotate_x(&ptr, mat->theta_x);
-	// new = proj_iso(ptr);
-	t_vec3 v;
+	t_vec3		v;
 
 	v.x = ptr.x;
 	v.y = ptr.y;
