@@ -175,3 +175,31 @@ pos = y * size_line + x * bytes_per_pixel
 // 		:shift + r/g/b
 // }
 
+
+
+
+ロドリゲスの回転による回転の再定義。
+
+// ・1e-8
+// >>非常に小さい値。回転量が非常に小さい場合、回転を実際に適用しない。返り値は恒等変換行列。
+// ・Rodrigues
+// >>ロドリゲスの回転。あるベクトルkを軸にベクトル空間を回転写像する。
+// ・the meaning of getting sqrtf(....)
+// >> 正規化。ロドリゲスの回転は、回転軸方向の単位ベクトルに関して行われるため、軸ベクトルの長さで割って大きさを1に調整する。
+// ・Rv
+// >>三次元世界の軸における回転。方向キーによる回転を、等角投影しているため、三次元座標空間における回転とユーザー視点の回転が直感的に一致するようにするためにいくつか行列による変換が必要になる。
+// ・Uv
+// >>ユーザー視点の総回転。
+// ・R_world = B^-1 x R_view x B
+// >>R_world :オブジェクト世界の回転行列。B :等角回転行列。R_view :ユーザ視点での回転行列。
+// >>操作順 :Bの逆行列(等角戻し)→R_view行列(オブジェクト回転)->B行列(等角ずらし)
+// ・U = R_world x U
+// >>ユーザによる回転量の保存。
+// ・Proj = B x U
+
+// ・Up/Down :画面x軸
+// ・Left/Right :画面y軸
+
+// 参考
+金沢工業大学、ロドリゲスの回転公式」
+https://w3e.kanazawa-it.ac.jp/math/physics/category/physical_math/linear_algebra/henkan-tex.cgi?target=/math/physics/category/physical_math/linear_algebra/rodrigues_rotation_matrix.html

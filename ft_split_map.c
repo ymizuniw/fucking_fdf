@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 21:09:55 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/09/02 21:16:54 by ymizuniw         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/fdf.h"
 
 static size_t	count_elem(char *s)
@@ -28,7 +40,7 @@ static size_t	count_elem(char *s)
 	return (count);
 }
 
-static void free_double_array(char **s)
+static void	free_double_array(char **s)
 {
 	size_t k;
 

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mlx_app_work.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 21:10:05 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/09/02 21:28:21 by ymizuniw         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/fdf.h"
 
-static int close_pressed(void *param)
+static int	close_pressed(void *param)
 {
-	t_app *app;
+	t_app	*app;
 
 	app = (t_app *)param;
 	free_all_rscs_exit(app, 0);

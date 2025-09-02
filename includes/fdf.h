@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 21:12:27 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/09/02 21:18:17 by ymizuniw         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
@@ -30,7 +42,7 @@
 # define IMG_WIDTH 1200
 # define IMG_HEIGHT 900
 # define PAN_LIM 600
-# define SCALE_LIM_L 100.f
+# define SCALE_LIM_L 100.0f
 # define SCALE_LIM_S 0.5f
 
 # define MALLOC_FAILURE "fatal! malloc failed."
@@ -42,7 +54,9 @@ typedef struct s_mat3
 
 typedef struct s_vec3
 {
-	float x, y, z;
+	float				x;
+	float				y;
+	float				z;
 }						t_vec3;
 
 // vector and matrix info structure

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   direction_mono.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 21:09:44 by ymizuniw          #+#    #+#             */
+/*   Updated: 2025/09/02 21:26:12 by ymizuniw         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/fdf.h"
 
 // static float	round_pi(float theta)
@@ -29,9 +41,9 @@
 // 	validate_angles(app);
 // }
 
-t_vec3 get_axis_z(void)
+t_vec3	get_axis_z(void)
 {
-	t_vec3 axis;
+	t_vec3	axis;
 
 	axis.x = 0;
 	axis.y = 0;
@@ -39,29 +51,29 @@ t_vec3 get_axis_z(void)
 	return (axis);
 }
 
-t_vec3 get_axis_x(void)
+t_vec3	get_axis_x(void)
 {
-	t_vec3 axis;
+	t_vec3	axis;
 
 	axis.x = 1;
 	axis.y = 0;
 	axis.z = 0;
-	return (axis);	
+	return (axis);
 }
 
-void direction_mono(int key, t_app *app)
+void	direction_mono(int key, t_app *app)
 {
-    t_vec3 axis_x;
-	t_vec3 axis_z;
+	t_vec3	axis_x;
+	t_vec3	axis_z;
 
 	axis_x = get_axis_x();
 	axis_z = get_axis_z();
-    if (key == XK_Left)
-        rotation_adjustment(app, axis_z, -ROT_UNIT);
-    else if (key == XK_Right)
-        rotation_adjustment(app, axis_z, ROT_UNIT);
-    else if (key == XK_Up)
-        rotation_adjustment(app, axis_x, -ROT_UNIT);
-    else if (key == XK_Down) 
-        rotation_adjustment(app, axis_x, ROT_UNIT);
+	if (key == XK_Left)
+		rotation_adjustment(app, axis_z, -ROT_UNIT);
+	else if (key == XK_Right)
+		rotation_adjustment(app, axis_z, ROT_UNIT);
+	else if (key == XK_Up)
+		rotation_adjustment(app, axis_x, -ROT_UNIT);
+	else if (key == XK_Down)
+		rotation_adjustment(app, axis_x, ROT_UNIT);
 }
