@@ -6,40 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:44 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 21:26:12 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/02 22:22:32 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fdf.h"
-
-// static float	round_pi(float theta)
-// {
-// 	while (theta > PI)
-// 		theta -= 2.0f * PI;
-// 	while (theta <= -PI)
-// 		theta += 2.0f * PI;
-// 	return (theta);
-// }
-
-// static void	validate_angles(t_app *app)
-// {
-// 	app->mat->theta_x = round_pi(app->mat->theta_x);
-// 	app->mat->theta_y = round_pi(app->mat->theta_y);
-// 	app->mat->theta_z = round_pi(app->mat->theta_z);
-// }
-
-// void	direction_mono(int key, t_app *app)
-// {
-// 	if (key == XK_Left)
-// 		app->mat->theta_z -= ROT_UNIT;
-// 	else if (key == XK_Right)
-// 		app->mat->theta_z += ROT_UNIT;
-// 	else if (key == XK_Up)
-// 		app->mat->theta_x -= ROT_UNIT;
-// 	else if (key == XK_Down)
-// 		app->mat->theta_x += ROT_UNIT;
-// 	validate_angles(app);
-// }
 
 t_vec3	get_axis_z(void)
 {

@@ -6,12 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:58 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 21:28:29 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/02 22:23:16 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fdf.h"
-#include "libft/includes/libft.h"
 
 // function to create node and set the int_array
 static int	add_int_array_tail(t_parse_list *head, int *int_array)
