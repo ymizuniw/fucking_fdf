@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:10 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 20:43:28 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:55:13 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void	parse_map(const char *map_path, t_app *app)
 		close_free_exit(fd, app, head, "map data composed of int?\n");
 	wclose(fd);
 	alloc_maps(app, head);
-	fprintf(stderr, "here\n");
 	set_map_3d(app, head);
 	free_parse_list(head);
-	fprintf(stderr, "here2\n");
 }

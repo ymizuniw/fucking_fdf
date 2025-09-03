@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:05 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 20:46:08 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:55:13 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	mlx_app_work(t_app *app)
 	app->img->data_addr = mlx_get_data_addr(app->img->img_ptr,
 			&(app->img->bits_per_pixel), &(app->img->size_line),
 			&(app->img->endian));
-	fprintf(stderr, "\nhere4 before refresh\n");
 	refresh(app);
 	mlx_hook(app->win_ptr, KEYPRESS, KEYPRESSMASK, key_pressed, app);
 	mlx_hook(app->win_ptr, KEYRELEASE, KEYRELEASEMASK, key_released, app);
