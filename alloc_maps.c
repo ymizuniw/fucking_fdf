@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:33 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 21:03:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 21:08:44 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	free_and_exit(const char *msg, t_app *app, t_parse_list *head)
 
 void	alloc_maps(t_app *app, t_parse_list *head)
 {
-	t_parse_list *keep_head;
+	t_parse_list	*keep_head;
 
 	keep_head = head;
 	head = head->next;
