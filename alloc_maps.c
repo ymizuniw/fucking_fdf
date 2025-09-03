@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:33 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 00:08:01 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:35:50 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ static size_t	get_map_height(t_parse_list *head)
 	return (size);
 }
 
-static void	free_and_exit(char *msg, t_app *app, t_parse_list *head)
+static void	free_and_exit(const char *msg, t_app *app, t_parse_list *head)
 {
-	perror(msg);
 	free_parse_list(head);
 	free_app(app, msg);
 	exit(EXIT_FAILURE);
@@ -48,16 +47,19 @@ static void	free_and_exit(char *msg, t_app *app, t_parse_list *head)
 
 void	alloc_maps(t_app *app, t_parse_list *head)
 {
+	t_parse_list *keep_head;
+
+	keep_head = head;
 	head = head->next;
 	if (head == NULL)
-		free_and_exit(MALLOC_FAILURE, app, head);
+		free_and_exit("no map list head allocated\n", app, keep_head);
 	app->map->width = get_map_width(head->int_array);
 	app->map->height = get_map_height(head);
 	app->map->map_size = app->map->width * app->map->height;
 	app->map->map_3d = malloc(sizeof(t_map_3d) * (app->map->map_size));
 	if (!app->map->map_3d)
-		free_and_exit(MALLOC_FAILURE, app, head);
+		free_and_exit("malloc map_3d failed!\n", app, head);
 	app->map->map_2d = malloc(sizeof(t_map_2d) * (app->map->map_size));
 	if (!app->map->map_2d)
-		free_and_exit(MALLOC_FAILURE, app, head);
+		free_and_exit("malloc map_2d failed!\n", app, head);
 }
