@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:51 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 22:22:41 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 21:03:33 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fdf.h"
+#include "fdf.h"
 
 static void	connect_row(t_img *img, t_map_2d *map_2d, size_t map_width,
 		size_t map_height)

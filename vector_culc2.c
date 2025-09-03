@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 22:09:46 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 02:34:37 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 21:03:33 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fdf.h"
+#include "fdf.h"
 
 t_mat3	mat3_transpose(t_mat3 a)
 {

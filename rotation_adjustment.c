@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:21 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 18:55:18 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 21:03:33 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fdf.h"
+#include "fdf.h"
 
 void	rotation_adjustment(t_app *app, t_vec3 axis, float delta)
 {

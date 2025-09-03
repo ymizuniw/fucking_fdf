@@ -6,11 +6,11 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:42 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 23:21:12 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 21:03:33 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/fdf.h"
+#include "fdf.h"
 
 t_map_2d	convert_points(t_map_3d ptr, t_matrix *mat)
 {

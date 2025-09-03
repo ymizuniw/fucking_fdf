@@ -18,7 +18,7 @@ SRCS		=	main.c alloc_app_content.c draw_map.c prepare_map.c \
 OBJS 		=	$(SRCS:.c=.o)
 
 LIBFT = $(LIBFT_DIR)/libft.a
-MLX = includes/libmlx_Linux.a -lXext -lX11 -lm -lz
+MLX = libmlx_Linux.a -lXext -lX11 -lm -lz
 
 # Rules
 all:		$(NAME)
