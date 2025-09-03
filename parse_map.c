@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:10 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 23:11:17 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 19:05:03 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void	close_free_exit(int fd, t_app *app, t_parse_list *head, const char *msg)
 	wclose(fd);
 	free_parse_list(head);
 	free_all_rscs(app, msg);
-	perror_exit("fatal! parse_map failed.");
+	gnl_clear();
+	ft_putstr_fd("fatal! parse_map failed.\n", 2);
+	exit(EXIT_FAILURE);
 }
 
 void	parse_map(const char *map_path, t_app *app)
@@ -43,7 +45,7 @@ void	parse_map(const char *map_path, t_app *app)
 	if (!head)
 		close_free_exit(fd, app, head, "malloc head failed\n");
 	if (!get_int_array_list(head, fd))
-		close_free_exit(fd, app, head, "get_int_array_list failed\n");
+		close_free_exit(fd, app, head, "map data composed of int?\n");
 	wclose(fd);
 	alloc_maps(app, head);
 	set_map_3d(app, head);

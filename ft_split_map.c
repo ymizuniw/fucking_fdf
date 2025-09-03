@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:55 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 22:22:52 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 18:23:28 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	*ft_split_map(char *s)
 	int		*res;
 
 	count = count_elem(s);
+	if (count == 0)
+		return (NULL);
 	res = malloc(sizeof(int) * (count + 1));
 	if (!res)
 		return (NULL);

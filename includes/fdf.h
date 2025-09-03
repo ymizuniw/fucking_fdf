@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:12:27 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 02:34:37 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 19:09:55 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define SCALE_UNIT 1.1f
 # define WIN_MAX 1000000
 
-# define WIN_WIDTH 1600
-# define WIN_HEIGHT 1200
+# define WIN_WIDTH 1200
+# define WIN_HEIGHT 900
 # define IMG_WIDTH 1200
 # define IMG_HEIGHT 900
 # define PAN_LIM_W 600
@@ -88,6 +88,7 @@ typedef struct s_map_2d
 	int					color;
 }						t_map_2d;
 
+//usr keeps the usr operated rotation.
 typedef struct s_matrix
 {
 	// float				theta_x;
