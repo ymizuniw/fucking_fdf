@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:10 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 20:26:56 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:43:28 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,10 @@ void	parse_map(const char *map_path, t_app *app)
 		close_free_exit(fd, app, head, "malloc head failed\n");
 	if (!get_int_array_list(head, fd))
 		close_free_exit(fd, app, head, "map data composed of int?\n");
-	fprintf(stderr, "get int array called\n");
-		wclose(fd);
+	wclose(fd);
 	alloc_maps(app, head);
-	fprintf(stderr, "map alloc\n");
-
+	fprintf(stderr, "here\n");
 	set_map_3d(app, head);
-	fprintf(stderr, "set map\n");
 	free_parse_list(head);
-	fprintf(stderr, "free parse list caleld\n");
+	fprintf(stderr, "here2\n");
 }

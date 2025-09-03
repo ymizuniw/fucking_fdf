@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:00 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/02 21:17:16 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:44:16 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	}
 	alloc_app_content(&app);
 	prepare_map(argv[1], &app);
+	fprintf(stderr, "here3");
 	mlx_app_work(&app);
 	return (0);
 }
