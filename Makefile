@@ -3,8 +3,8 @@ NAME		=	fdf
 
 # Compiler
 CC			=	cc
-CFLAGS		= 	-Wall -Wextra -Werror -Iincludes
-INC 		= 	-Iincludes -Ilibft/includes
+CFLAGS		= 	-Wall -Wextra -Werror -Iincludes -g
+INC 		= 	-Ilibft/includes
 CFLAGS		+=	$(INC)
 
 LIBFT_DIR	= libft

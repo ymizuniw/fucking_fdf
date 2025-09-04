@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:55 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/04 23:23:32 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 05:12:36 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int	parse_color(const char *s, size_t *idx, t_point *point)
 	tmp = malloc(sizeof(char) * (*idx + 1));
 	if (!tmp)
 		return (-1);
-	ft_strlcpy(tmp, &s[*idx - 1], *idx + 1);
+	ft_strlcpy(tmp, s, *idx);
 	point->height = ft_atoi(tmp);
 	free(tmp);
-	if ((s[*idx + 1] && s[++(*idx)] == '0') && (s[*idx + 1] && s[++*idx] == 'x')
-		&& (s[*idx + 1] && ft_isdigit(s[*idx + 1])))
+	if ((s[*idx + 1] && s[++(*idx)] == '0') && (s[*idx + 1]
+			&& s[++(*idx)] == 'x') && (s[*idx + 1]))
 		point->color = ft_atoi_base(&s[*idx], 16);
 	else
 	{
@@ -52,6 +52,8 @@ t_point	*get_map_info(const char *s)
 	if (!point)
 		return (NULL);
 	i = 0;
+	if (s[i] && s[i] == '-')
+		i++;
 	while (s[i] && ft_isdigit(s[i]))
 		i++;
 	if (i == 0)
@@ -96,14 +98,13 @@ t_point	**ft_split_map(char *s)
 	if (!data)
 		return (NULL);
 	count = count_elems(data);
-	fprintf(stderr, "%zu\n", count);
 	if (count == 0)
 		return (free_char_ptr_array(data), NULL);
 	points = malloc(sizeof(t_point *) * (count + 1));
 	if (!points)
-		return (NULL);
+		return (free_char_ptr_array(data), NULL);
 	if (set_points_array(data, points, count) < 0)
-		return (NULL);
-	fprintf(stderr, "set points array passed\n");
+		return (free_char_ptr_array(data), NULL);
+	free_char_ptr_array(data);
 	return (points);
 }

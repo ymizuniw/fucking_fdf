@@ -6,16 +6,16 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 22:45:44 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/04 23:03:29 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 04:53:05 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-// static int	ft_isdigit(char n)
-// {
-// 	return (n >= '0' && n <= '9');
-// }
+static int	ft_is_digit(char n)
+{
+	return (n >= '0' && n <= '9');
+}
 
 // ensure that base is 2 <= base <= 16.
 int	ft_atoi_base(const char *s, size_t base)
@@ -37,10 +37,10 @@ int	ft_atoi_base(const char *s, size_t base)
 			n = s[i] - 'a' + 10;
 		else if ('A' <= s[i] && s[i] <= 'F')
 			n = s[i] - 'A' + 10;
-		else if (ft_isdigit(s[i]))
+		else if (ft_is_digit(s[i]))
 			n = s[i] - '0';
 		else
-			return (ft_putstr_fd("ft_atoi_base :invalid format.\n", 2), -1);
+			return (-1);
 		res = res * base + n;
 		i++;
 	}

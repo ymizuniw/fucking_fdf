@@ -27,7 +27,6 @@ static int	add_points_tail(t_parse_list *head, t_point **points)
 	new->points = points;
 	new->next = NULL;
 	head->next = new;
-	fprintf(stderr, "here3\n");
 	return (0);
 }
 
@@ -43,11 +42,9 @@ t_parse_list	*get_points_list(t_parse_list *head, int fd)
 		if (line == NULL)
 			break ;
 		points = ft_split_map(line);
-		fprintf(stderr, "here\n");
 		free(line);
 		if (!points)
 			return (NULL);
-		fprintf(stderr, "here2\n");
 		if (add_points_tail(head, points) < 0)
 			return (NULL);
 	}
