@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:10 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 05:08:21 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 06:57:53 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,24 @@ void	close_free_exit(int fd, t_app *app, t_parse_list *head, const char *msg)
 	exit(EXIT_FAILURE);
 }
 
+static void	free_app_exit(t_app *app, const char *msg)
+{
+	free_app(app, msg);
+	exit(EXIT_FAILURE);
+}
+
 void	parse_map(const char *map_path, t_app *app)
 {
 	int				fd;
 	t_parse_list	*head;
+	size_t			len;
 
+	len = ft_strlen(map_path);
+	if (ft_strncmp(&map_path[len - 4], ".fdf", 4) != 0)
+		free_app_exit(app, "file format is incorrect. provide .fdf file\n");
 	fd = open(map_path, O_RDONLY);
 	if (fd < 0)
-	{
-		free_app(app, "open err\n");
-		exit(1);
-	}
+		free_app_exit(app, "open map file failed\n");
 	head = alloc_head();
 	if (!head)
 		close_free_exit(fd, app, head, "malloc head failed\n");

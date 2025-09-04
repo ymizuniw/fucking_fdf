@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:15:37 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/04 20:22:56 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 05:21:55 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	convert_map(t_app *app)
 	{
 		app->map->map_2d[i] = convert_points(app->map->map_3d[i], app->mat);
 		centering_screen(&app->map->map_2d[i], app);
-		app->map->map_2d[i].color = app->map->color;
 		i++;
 	}
 }

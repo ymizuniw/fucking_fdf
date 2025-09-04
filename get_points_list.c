@@ -46,7 +46,7 @@ t_parse_list	*get_points_list(t_parse_list *head, int fd)
 		if (!points)
 			return (NULL);
 		if (add_points_tail(head, points) < 0)
-			return (NULL);
+			return (ft_putstr_fd("here", 2), NULL);
 	}
 	return (head);
 }

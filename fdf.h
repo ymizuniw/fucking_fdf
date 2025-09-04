@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:12:27 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/04 23:05:00 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 06:13:45 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,6 @@ typedef struct s_map_2d
 // usr keeps the usr operated rotation.
 typedef struct s_matrix
 {
-	// float				theta_x;
-	// float				theta_y;
-	// float				theta_z;
 	float				scale;
 	float				pan_x;
 	float				pan_y;
@@ -243,7 +240,6 @@ void					free_app(t_app *app, const char *msg);
 void					free_all_rscs(t_app *app, const char *msg);
 void					free_all_rscs_exit(t_app *app, int status);
 void					destroy_app(t_app *app);
-void					perror_exit(char *msg);
 
 // draw map
 void					draw_map(t_app *app);

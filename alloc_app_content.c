@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:39 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 04:05:25 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 06:57:36 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	alloc_app_content(t_app *app)
 	ft_bzero(app, sizeof(*app));
 	app->map = malloc(sizeof(t_map));
 	if (app->map == NULL)
-		perror_exit(MALLOC_FAILURE);
+	{
+		ft_putstr_fd("malloc map failed\n", 2);
+		exit(EXIT_FAILURE);
+	}
 	ft_bzero(app->map, sizeof(*app->map));
 	app->mat = malloc(sizeof(t_matrix));
 	if (app->mat == NULL)
@@ -34,5 +37,4 @@ void	alloc_app_content(t_app *app)
 	if (!app->option)
 		free_app(app, "malloc option structure failed\n");
 	ft_bzero(app->option, sizeof(*app->option));
-	app->map->color = 0xFFFFFF;
 }

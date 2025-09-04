@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 22:45:44 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 04:53:05 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 05:38:35 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,10 @@ static int	ft_is_digit(char n)
 // ensure that base is 2 <= base <= 16.
 int	ft_atoi_base(const char *s, size_t base)
 {
-	char	*digit_u;
-	char	*digit_l;
 	int		res;
 	int		n;
 	size_t	i;
 
-	digit_u = "0123456789ABCDEF";
-	digit_l = "0123456789abcdef";
 	res = 0;
 	n = 0;
 	i = 0;
@@ -40,7 +36,7 @@ int	ft_atoi_base(const char *s, size_t base)
 		else if (ft_is_digit(s[i]))
 			n = s[i] - '0';
 		else
-			return (-1);
+			break ;
 		res = res * base + n;
 		i++;
 	}
