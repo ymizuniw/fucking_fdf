@@ -6,7 +6,7 @@
 #    By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/20 00:00:00 by yourlogin         #+#    #+#              #
-#    Updated: 2025/09/04 22:21:20 by ymizuniw         ###   ########.fr        #
+#    Updated: 2025/09/05 07:12:09 by ymizuniw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,7 @@ SRCS	= \
 	src/libft/ft_lstadd_back_bonus.c src/libft/ft_lstadd_front_bonus.c src/libft/ft_lstclear_bonus.c \
 	src/libft/ft_lstdelone_bonus.c src/libft/ft_lstiter_bonus.c src/libft/ft_lstlast_bonus.c \
 	src/libft/ft_lstmap_bonus.c src/libft/ft_lstnew_bonus.c src/libft/ft_lstsize_bonus.c \
-	src/get_next_line/get_next_line.c src/get_next_line/get_next_line_utils1.c \
-	src/get_next_line/get_next_line_utils2.c src/get_next_line/gnl_utils3.c\
+	src/get_next_line/get_next_line.c src/get_next_line/get_next_line_utils.c \
 	src/ft_printf/ft_printf.c \
 	src/ft_printf/parse_format/manage_flag_conflict.c src/ft_printf/parse_format/manage_flag_spec.c \
 	src/ft_printf/parse_format/parse_flags.c src/ft_printf/parse_format/parse_format.c \

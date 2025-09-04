@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:39 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 06:57:36 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 07:25:41 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ void	alloc_app_content(t_app *app)
 	app->mat = malloc(sizeof(t_matrix));
 	if (app->mat == NULL)
 		free_app(app, "malloc matrix failed\n");
-	ft_bzero(app->mat, sizeof(*app->mat));
+	ft_bzero(app->mat, sizeof(t_matrix));
 	app->mat->usr = mat3_identity();
 	app->mat->scale = 1.0f;
 	app->img = malloc(sizeof(t_img));
 	if (app->img == NULL)
 		free_app(app, "malloc img structure failed\n");
-	ft_bzero(app->img, sizeof(*app->img));
+	ft_bzero(app->img, sizeof(t_img));
 	app->option = malloc(sizeof(t_option));
 	if (!app->option)
 		free_app(app, "malloc option structure failed\n");
-	ft_bzero(app->option, sizeof(*app->option));
+	ft_bzero(app->option, sizeof(t_option));
 }

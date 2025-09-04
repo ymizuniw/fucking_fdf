@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:10 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 06:57:53 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 07:14:35 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	close_free_exit(int fd, t_app *app, t_parse_list *head, const char *msg)
 	wclose(fd);
 	free_parse_list(head);
 	free_all_rscs(app, msg);
-	gnl_clear();
 	ft_putstr_fd("fatal! parse_map failed.\n", 2);
 	exit(EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:19 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 21:03:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 07:29:49 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	clear_img(t_img *img)
 {
-	ft_bzero(img->data_addr, img->img_height * img->size_line);
+	ft_bzero(img->data_addr, IMG_HEIGHT * img->size_line);
 }
 
 void	refresh(t_app *app)

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:12:27 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 06:13:45 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 07:39:49 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,8 @@ typedef struct s_draw_line
 {
 	int					dx;
 	int					dy;
-	int					x;
-	int					y;
+	size_t				x;
+	size_t				y;
 	int					sign_x;
 	int					sign_y;
 }						t_draw_line;
@@ -134,8 +134,6 @@ typedef struct s_img
 	int					bits_per_pixel;
 	int					size_line;
 	int					endian;
-	int					img_width;
-	int					img_height;
 }						t_img;
 
 typedef struct s_option
@@ -149,8 +147,6 @@ typedef struct s_app
 	void				*mlx_ptr;
 	void				*win_ptr;
 	t_option			*option;
-	int					win_width;
-	int					win_height;
 	t_map				*map;
 	t_matrix			*mat;
 	t_img				*img;

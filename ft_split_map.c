@@ -6,23 +6,23 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:55 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 06:59:12 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 08:25:30 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-size_t	count_elems(char **data)
+static size_t	count_elems(char **data)
 {
 	size_t	count;
 
 	count = 0;
 	while (data[count])
 		count++;
-	return (count);
+	return (count - 1);
 }
 
-int	parse_color(const char *s, size_t *idx, t_point *point)
+static int	parse_color(const char *s, size_t *idx, t_point *point)
 {
 	char	*tmp;
 
@@ -34,13 +34,14 @@ int	parse_color(const char *s, size_t *idx, t_point *point)
 	free(tmp);
 	(*idx)++;
 	if ((((ft_strncmp(&s[*idx], "0x", 2) == 0) || ft_strncmp(&s[*idx], "0X",
-					2) == 0)) && (s[*idx + 3] && (ft_isdigit(s[*idx + 2])
+					2) == 0)) && (s[*idx + 2] && (ft_isdigit(s[*idx + 2])
 				|| (('a' <= s[*idx + 2] && s[*idx + 2] <= 'f') || ('A' <= s[*idx
 							+ 2] && s[*idx + 2] <= 'F')))))
 		point->color = ft_atoi_base(&s[*idx + 2], 16);
 	else
 	{
 		ft_putstr_fd("map format is invalid\n", 2);
+		point->color = 0xffffff;
 		return (-1);
 	}
 	return (0);
@@ -54,9 +55,12 @@ t_point	*get_map_info(const char *s)
 	point = malloc(sizeof(t_point));
 	if (!point)
 		return (NULL);
+	ft_bzero(point, sizeof(t_point));
 	i = 0;
 	if (s[i] && s[i] == '-')
 		i++;
+	if (!s[i] || !ft_isdigit(s[i]))
+		return (free(point), NULL);
 	while (s[i] && ft_isdigit(s[i]))
 		i++;
 	if (!s[i])

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:49 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 06:20:15 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 07:42:13 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 // mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
 // dst holds the infromation of color of the designated pixel.
-static void	put_pixel(t_img *img, int x, int y, int color)
+static void	put_pixel(t_img *img, size_t x, size_t y, int color)
 {
 	char	*dst;
 
-	if (x < 0 || x >= img->img_width || y < 0 || y >= img->img_height)
+	if (x < 0 || x >= IMG_WIDTH || y < 0 || y >= IMG_HEIGHT)
 		return ;
 	dst = img->data_addr + (y * img->size_line + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
@@ -28,8 +28,8 @@ static void	put_pixel(t_img *img, int x, int y, int color)
 static void	initialize_draw_line_struct(t_draw_line *dl, t_map_2d *start,
 		t_map_2d *end)
 {
-	dl->x = (int)start->x;
-	dl->y = (int)start->y;
+	dl->x = (size_t)start->x;
+	dl->y = (size_t)start->y;
 	dl->dx = (int)end->x - (int)start->x;
 	dl->dy = (int)end->y - (int)start->y;
 	dl->sign_x = 1;
@@ -53,7 +53,7 @@ static void	x_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start,
 	int	err;
 
 	err = dl->dx / 2;
-	while (dl->x != (int)end->x)
+	while (dl->x != (size_t)end->x)
 	{
 		put_pixel(img, dl->x, dl->y, start->color);
 		err -= dl->dy;
@@ -73,7 +73,7 @@ static void	y_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start,
 	int	err;
 
 	err = dl->dy / 2;
-	while (dl->y != (int)end->y)
+	while (dl->y != (size_t)end->y)
 	{
 		put_pixel(img, dl->x, dl->y, start->color);
 		err -= dl->dx;
