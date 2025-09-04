@@ -1,51 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_int_array_list.c                               :+:      :+:    :+:   */
+/*   get_points_list.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:58 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 21:03:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/04 21:55:50 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// function to create node and set the int_array
-static int	add_int_array_tail(t_parse_list *head, int *int_array)
+// function to create node and set the points
+static int	add_points_tail(t_parse_list *head, t_point **points)
 {
 	t_parse_list	*new;
 
-	if (!head || !int_array)
+	if (!head || !points)
 		return (-1);
 	new = malloc(sizeof(t_parse_list));
 	if (!new)
 		return (-1);
 	while (head && head->next)
 		head = head->next;
-	new->int_array = int_array;
+	new->points = points;
 	new->next = NULL;
 	head->next = new;
+	fprintf(stderr, "here3\n");
 	return (0);
 }
 
-// get the list whose member have each line of map, int_array.
-t_parse_list	*get_int_array_list(t_parse_list *head, int fd)
+// get the list whose member have each line of map, points.
+t_parse_list	*get_points_list(t_parse_list *head, int fd)
 {
 	char	*line;
-	int		*int_array;
+	t_point	**points;
 
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		int_array = ft_split_map(line);
+		points = ft_split_map(line);
+		fprintf(stderr, "here\n");
 		free(line);
-		if (!int_array)
+		if (!points)
 			return (NULL);
-		if (add_int_array_tail(head, int_array) < 0)
+		fprintf(stderr, "here2\n");
+		if (add_points_tail(head, points) < 0)
 			return (NULL);
 	}
 	return (head);

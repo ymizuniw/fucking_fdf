@@ -6,21 +6,21 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:33 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 21:08:44 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/04 22:08:19 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 // termination should be with -1 or other negative num.
-size_t	get_map_width(int *int_array)
+size_t	get_map_width(t_point **points)
 {
 	size_t	count;
 
-	if (!int_array)
+	if (!points || !*points)
 		return (0);
 	count = 0;
-	while (int_array[count] != INT_MIN)
+	while (points[count] != NULL)
 		count++;
 	return (count);
 }
@@ -53,7 +53,7 @@ void	alloc_maps(t_app *app, t_parse_list *head)
 	head = head->next;
 	if (head == NULL)
 		free_and_exit("no map list head allocated\n", app, keep_head);
-	app->map->width = get_map_width(head->int_array);
+	app->map->width = get_map_width(head->points);
 	app->map->height = get_map_height(head);
 	app->map->map_size = app->map->width * app->map->height;
 	app->map->map_3d = malloc(sizeof(t_map_3d) * (app->map->map_size));

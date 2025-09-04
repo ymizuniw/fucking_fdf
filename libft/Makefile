@@ -6,7 +6,7 @@
 #    By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/20 00:00:00 by yourlogin         #+#    #+#              #
-#    Updated: 2025/09/03 19:01:12 by ymizuniw         ###   ########.fr        #
+#    Updated: 2025/09/04 22:21:20 by ymizuniw         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS	= \
 	src/libft/ft_strdup.c src/libft/ft_striteri.c src/libft/ft_strjoin.c src/libft/ft_strlcat.c \
 	src/libft/ft_strlcpy.c src/libft/ft_strlen.c src/libft/ft_strmapi.c src/libft/ft_strncmp.c \
 	src/libft/ft_strndup.c src/libft/ft_strnstr.c src/libft/ft_strrchr.c src/libft/ft_strtrim.c \
-	src/libft/ft_substr.c src/libft/ft_tolower.c src/libft/ft_toupper.c \
+	src/libft/ft_substr.c src/libft/ft_tolower.c src/libft/ft_toupper.c src/libft/ft_atoi_base.c \
 	src/libft/ft_lstadd_back_bonus.c src/libft/ft_lstadd_front_bonus.c src/libft/ft_lstclear_bonus.c \
 	src/libft/ft_lstdelone_bonus.c src/libft/ft_lstiter_bonus.c src/libft/ft_lstlast_bonus.c \
 	src/libft/ft_lstmap_bonus.c src/libft/ft_lstnew_bonus.c src/libft/ft_lstsize_bonus.c \

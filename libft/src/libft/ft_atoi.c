@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 22:21:38 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/06/13 03:58:07 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/04 22:46:33 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_atoi(const char *nptr)
 			return ((int)is_max_min(res, sign));
 		nptr++;
 	}
-	return ((int)res);
+	return (sign * (int)res);
 }
 
 // int	main(void)

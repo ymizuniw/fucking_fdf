@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 11:44:54 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/08/31 23:53:00 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/04 22:20:50 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int							ft_memcmp(const void *s1, const void *s2, size_t n);
 char						*ft_strnstr(const char *big, const char *little,
 								size_t len);
 int							ft_atoi(const char *str);
+int							ft_atoi_base(const char *str, size_t base);
 void						*ft_calloc(size_t count, size_t size);
 char						*ft_strdup(const char *s1);
 char						*ft_strndup(const char *s1, size_t n);

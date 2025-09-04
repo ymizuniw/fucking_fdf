@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:10 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 21:03:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:05:09 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_parse_list	*alloc_head(void)
 	head = malloc(sizeof(t_parse_list));
 	if (head == NULL)
 		return (NULL);
-	head->int_array = NULL;
+	head->points = NULL;
 	head->next = NULL;
 	return (head);
 }
@@ -40,11 +40,16 @@ void	parse_map(const char *map_path, t_app *app)
 	int				fd;
 	t_parse_list	*head;
 
-	fd = wopen(map_path);
+	fd = open(map_path, O_RDONLY);
+	if (fd < 0)
+	{
+		free_app(app, "open err\n");
+		exit(1);
+	}
 	head = alloc_head();
 	if (!head)
 		close_free_exit(fd, app, head, "malloc head failed\n");
-	if (!get_int_array_list(head, fd))
+	if (!get_points_list(head, fd))
 		close_free_exit(fd, app, head, "map data composed of int?\n");
 	wclose(fd);
 	alloc_maps(app, head);

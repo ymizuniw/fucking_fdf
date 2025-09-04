@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 22:06:22 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 21:03:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/04 22:06:23 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ static void	fill_padding(t_app *app, t_set_map stm)
 	app->map->map_3d[stm.i].z = 0.0f;
 	app->map->map_3d[stm.i].x = (float)stm.x;
 	app->map->map_3d[stm.i].y = (float)stm.y;
+	app->map->map_3d[stm.i].color = 0xffffff;
 }
 
 static void	fill_map_3d(t_app *app, t_set_map stm, t_parse_list *head)
 {
-	app->map->map_3d[stm.i].z = (float)head->int_array[stm.x];
+	app->map->map_3d[stm.i].z = (float)head->points[stm.x]->height;
 	app->map->map_3d[stm.i].x = (float)stm.x;
 	app->map->map_3d[stm.i].y = (float)stm.y;
+	app->map->map_3d[stm.i].color = head->points[stm.x]->color;
 }
 
 void	set_map_3d(t_app *app, t_parse_list *head)
@@ -36,7 +38,7 @@ void	set_map_3d(t_app *app, t_parse_list *head)
 	{
 		stm.x = 0;
 		stm.start = stm.y * app->map->width;
-		stm.line_w = get_map_width(head->int_array);
+		stm.line_w = get_map_width(head->points);
 		while (stm.line_w > stm.x && app->map->width > stm.x)
 		{
 			stm.i = stm.start + stm.x;

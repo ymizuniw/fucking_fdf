@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:12:27 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 21:07:37 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/04 23:05:00 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 # include "libft/includes/ft_printf.h"
 # include "libft/includes/get_next_line.h"
 # include "libft/includes/libft.h"
+# include "mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
-# include "mlx.h"
 
 # define KEYPRESS 2
 # define KEYRELEASE 3
@@ -47,6 +47,12 @@
 # define SCALE_LIM_S 0.5f
 
 # define MALLOC_FAILURE "fatal! malloc failed."
+
+typedef struct s_point
+{
+	int					height;
+	int					color;
+}						t_point;
 
 typedef struct s_mat3
 {
@@ -88,7 +94,7 @@ typedef struct s_map_2d
 	int					color;
 }						t_map_2d;
 
-//usr keeps the usr operated rotation.
+// usr keeps the usr operated rotation.
 typedef struct s_matrix
 {
 	// float				theta_x;
@@ -155,7 +161,7 @@ typedef struct s_app
 
 typedef struct s_parse_list
 {
-	int					*int_array;
+	t_point				**points;
 	struct s_parse_list	*next;
 }						t_parse_list;
 
@@ -183,9 +189,10 @@ void					alloc_app_content(t_app *app);
 
 // parse map functions
 void					alloc_maps(t_app *app, t_parse_list *head);
-int						*ft_split_map(char *s);
-t_parse_list			*get_int_array_list(t_parse_list *head, int fd);
-size_t					get_map_width(int *int_array);
+t_point					*get_map_info(const char *s);
+t_point					**ft_split_map(char *s);
+t_parse_list			*get_points_list(t_parse_list *head, int fd);
+size_t					get_map_width(t_point **point);
 void					set_map_3d(t_app *app, t_parse_list *head);
 
 // mlx entry point
@@ -228,6 +235,8 @@ t_vec3					mat3_apply(t_mat3 m, t_vec3 v);
 t_mat3					display_axis_rot(t_vec3 axis, float angle);
 
 // free resources and exit
+void					free_char_ptr_array(char **s);
+void					free_points_array(t_point **p);
 void					free_parse_list(t_parse_list *head);
 void					free_map(t_app *app);
 void					free_app(t_app *app, const char *msg);
