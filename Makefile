@@ -1,9 +1,9 @@
-# minilibx_test
+# Executable
 NAME		=	fdf
 
-# Compiler
+# Compile Options
 CC			=	cc
-CFLAGS		= 	-Wall -Wextra -Werror -Iincludes -g
+CFLAGS		= 	-Wall -Wextra -Werror -Iincludes
 INC 		= 	-Ilibft/includes
 CFLAGS		+=	$(INC)
 
