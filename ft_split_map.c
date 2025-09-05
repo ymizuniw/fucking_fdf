@@ -6,12 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:55 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 08:25:30 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:50:41 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+//count the length of data array.
 static size_t	count_elems(char **data)
 {
 	size_t	count;
@@ -22,6 +23,7 @@ static size_t	count_elems(char **data)
 	return (count - 1);
 }
 
+//if color is given as hex value with prefix 0x or 0X, parse color and set it to point.
 static int	parse_color(const char *s, size_t *idx, t_point *point)
 {
 	char	*tmp;
@@ -47,6 +49,7 @@ static int	parse_color(const char *s, size_t *idx, t_point *point)
 	return (0);
 }
 
+//parse line recognizing "int" or "int,0x......"
 t_point	*get_map_info(const char *s)
 {
 	size_t	i;
@@ -74,6 +77,7 @@ t_point	*get_map_info(const char *s)
 	return (point);
 }
 
+//set s_points *array element with s_point got by get_map_info.
 int	set_points_array(char **data, t_point **points, size_t count)
 {
 	size_t	j;
@@ -94,6 +98,7 @@ int	set_points_array(char **data, t_point **points, size_t count)
 	return (0);
 }
 
+//split line by space, find ',', and set height and color to s_point *array.
 t_point	**ft_split_map(char *s)
 {
 	char	**data;

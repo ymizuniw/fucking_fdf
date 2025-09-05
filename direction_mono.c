@@ -6,12 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:44 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 21:03:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:47:32 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+//get 3d vector only z direction has scalar and it is 1.f.
 t_vec3	get_axis_z(void)
 {
 	t_vec3	axis;
@@ -22,6 +23,7 @@ t_vec3	get_axis_z(void)
 	return (axis);
 }
 
+//get 3d vector only z direction has scalar and it is 1.f.
 t_vec3	get_axis_x(void)
 {
 	t_vec3	axis;
@@ -32,6 +34,7 @@ t_vec3	get_axis_x(void)
 	return (axis);
 }
 
+//when direction key is pressed without shift key, rotate the object.
 void	direction_mono(int key, t_app *app)
 {
 	t_vec3	axis_x;

@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 22:06:22 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 05:20:41 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:39:28 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	fill_padding(t_app *app, t_set_map stm)
 	app->map->map_3d[stm.i].z = 0.0f;
 	app->map->map_3d[stm.i].x = (float)stm.x;
 	app->map->map_3d[stm.i].y = (float)stm.y;
-	app->map->map_3d[stm.i].color = 0xffffff;
+	app->map->map_3d[stm.i].color = 0x000000;
 }
 
 static void	fill_map_3d(t_app *app, t_set_map stm, t_parse_list *head)
@@ -28,6 +28,7 @@ static void	fill_map_3d(t_app *app, t_set_map stm, t_parse_list *head)
 	app->map->map_3d[stm.i].color = head->points[stm.x]->color;
 }
 
+//set map 3d, adjusting lacking or excessive length of line.
 void	set_map_3d(t_app *app, t_parse_list *head)
 {
 	t_set_map	stm;

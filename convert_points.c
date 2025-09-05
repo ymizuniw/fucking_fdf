@@ -6,12 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:42 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 05:26:35 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:12:11 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+//maps 3d points to 2d following isometric projection formula.
 t_map_2d	convert_points(t_map_3d ptr, t_matrix *mat)
 {
 	t_map_2d	new;

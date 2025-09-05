@@ -6,13 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:10 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 07:14:35 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:29:37 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// assure that head is non-null ptr
+// allocate a dummy head. 
 static t_parse_list	*alloc_head(void)
 {
 	t_parse_list	*head;
@@ -40,6 +40,7 @@ static void	free_app_exit(t_app *app, const char *msg)
 	exit(EXIT_FAILURE);
 }
 
+//parse map and get height and color of each points.
 void	parse_map(const char *map_path, t_app *app)
 {
 	int				fd;

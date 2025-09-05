@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:05 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 07:38:28 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:56:59 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ static int	close_pressed(void *param)
 	return (0);
 }
 
+//mlx application entry point.
 void	mlx_app_work(t_app *app)
 {
 	app->mlx_ptr = mlx_init();
 	if (!app->mlx_ptr)
-		free_all_rscs_exit(app, 1);
+		free_all_rscs_exit(app, EXIT_FAILURE);
 	app->win_ptr = mlx_new_window(app->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "FDF");
 	app->img->img_ptr = mlx_new_image(app->mlx_ptr, IMG_WIDTH, IMG_HEIGHT);
 	app->img->data_addr = mlx_get_data_addr(app->img->img_ptr,

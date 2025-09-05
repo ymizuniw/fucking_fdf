@@ -6,12 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 22:06:11 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 21:03:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:47:38 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+//return t_vec3 val after multipling with scalar s.
 t_vec3	scl(t_vec3 v, float s)
 {
 	v.x *= s;
@@ -20,6 +21,7 @@ t_vec3	scl(t_vec3 v, float s)
 	return (v);
 }
 
+//return t_vec3 val after subtracting b from a.
 t_vec3	sub(t_vec3 a, t_vec3 b)
 {
 	t_vec3	s;
@@ -30,6 +32,7 @@ t_vec3	sub(t_vec3 a, t_vec3 b)
 	return (s);
 }
 
+//return scalor, dot(a, b), following the dot formula.
 float	dot(t_vec3 a, t_vec3 b)
 {
 	size_t	i;
@@ -50,8 +53,7 @@ float	dot(t_vec3 a, t_vec3 b)
 	return (scl);
 }
 
-// a x b = aybz - azby, azbx - axbz, axby - aybx;
-
+//get the cross of a and b. following formula. a x b = aybz - azby, azbx - axbz, axby - aybx;
 t_vec3	cross(t_vec3 a, t_vec3 b)
 {
 	t_vec3	c;
@@ -62,6 +64,7 @@ t_vec3	cross(t_vec3 a, t_vec3 b)
 	return (c);
 }
 
+//make the size of v to 1, culculating the len^2 of v and multiple v with it.
 t_vec3	normalize(t_vec3 v)
 {
 	float	l2;

@@ -6,12 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 22:09:46 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/03 21:03:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:21:46 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+//get transeposed 3d vector.
 t_mat3	mat3_transpose(t_mat3 a)
 {
 	t_mat3	ta;
@@ -33,6 +34,7 @@ t_mat3	mat3_transpose(t_mat3 a)
 	return (ta);
 }
 
+//get 3d identity vector whose diagonal elements are 1.f.
 t_mat3	mat3_identity(void)
 {
 	t_mat3	iden;
@@ -57,6 +59,7 @@ t_mat3	mat3_identity(void)
 	return (iden);
 }
 
+//get multiple of 3d vector a and b.
 t_mat3	mat3_multiply(t_mat3 a, t_mat3 b)
 {
 	t_mat3	r;
@@ -86,6 +89,7 @@ t_mat3	mat3_multiply(t_mat3 a, t_mat3 b)
 	return (r);
 }
 
+//apply 3d matrix m to 3d vector v.
 t_vec3	mat3_apply(t_mat3 m, t_vec3 v)
 {
 	t_vec3	rv;
@@ -96,6 +100,7 @@ t_vec3	mat3_apply(t_mat3 m, t_vec3 v)
 	return (rv);
 }
 
+//rotate the object around the designated axis, following Rodriguess's rotation formula.
 t_mat3	display_axis_rot(t_vec3 axis, float angle)
 {
 	float		len;

@@ -6,13 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:33 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 07:50:20 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:47:32 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// termination should be with -1 or other negative num.
+//counting the length of s_point *array.
 size_t	get_map_width(t_point **points)
 {
 	size_t	count;
@@ -25,6 +25,7 @@ size_t	get_map_width(t_point **points)
 	return (count);
 }
 
+//counting the length of s_parse_list *list.
 static size_t	get_map_height(t_parse_list *head)
 {
 	size_t	size;
@@ -45,6 +46,7 @@ static void	free_and_exit(const char *msg, t_app *app, t_parse_list *head)
 	exit(EXIT_FAILURE);
 }
 
+//allocate heap memory to 3d and 2d maps.
 void	alloc_maps(t_app *app, t_parse_list *head)
 {
 	t_parse_list	*keep_head;

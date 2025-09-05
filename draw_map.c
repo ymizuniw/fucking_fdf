@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:51 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 06:14:48 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:50:07 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void	connect_column(t_img *img, t_map_2d *map_2d, size_t map_width,
 	}
 }
 
+//connect horizontal and vertical direction.
 void	draw_map(t_app *app)
 {
 	connect_row(app->img, app->map->map_2d, app->map->width, app->map->height);

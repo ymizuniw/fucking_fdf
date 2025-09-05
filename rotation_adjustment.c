@@ -6,12 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:21 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 04:44:12 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:47:32 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+//rotate object by radian delta around the designated axis.
 void	rotation_adjustment(t_app *app, t_vec3 axis, float delta)
 {
 	t_mat3	rv;

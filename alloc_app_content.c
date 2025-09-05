@@ -6,13 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:39 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 07:25:41 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:47:32 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// initialize app contents
+// initialize s_app contents
 void	alloc_app_content(t_app *app)
 {
 	ft_bzero(app, sizeof(*app));

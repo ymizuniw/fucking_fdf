@@ -6,14 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:49 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 07:42:13 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:49:27 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
-// dst holds the infromation of color of the designated pixel.
+//put pixel color info to the culculated address from data address of img.
 static void	put_pixel(t_img *img, size_t x, size_t y, int color)
 {
 	char	*dst;

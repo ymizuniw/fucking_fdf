@@ -6,20 +6,20 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:15:37 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 07:29:33 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:47:32 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// how to set it correctly.
+//the centre of coordination is half len of img plus accumulated pan.
 static	void	centering_screen(t_map_2d *ptr, t_app *app)
 {
 	ptr->x += (float)(IMG_WIDTH * 0.5f) + app->mat->pan_x;
 	ptr->y += (float)(IMG_HEIGHT * 0.5f) + app->mat->pan_y;
 }
 
-// convert 3d vector to 2d
+// convert 3d map to 2d.
 void	convert_map(t_app *app)
 {
 	size_t	i;

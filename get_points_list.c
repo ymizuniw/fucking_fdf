@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-// function to create node and set the points
+// create node and set the points
 static int	add_points_tail(t_parse_list *head, t_point **points)
 {
 	t_parse_list	*new;
@@ -30,7 +30,7 @@ static int	add_points_tail(t_parse_list *head, t_point **points)
 	return (0);
 }
 
-// get the list whose member have each line of map, points.
+// read map and set each line info to correspoinding s_parse_list node.
 t_parse_list	*get_points_list(t_parse_list *head, int fd)
 {
 	char	*line;
