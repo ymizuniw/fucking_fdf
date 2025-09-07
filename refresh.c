@@ -6,19 +6,19 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:19 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 17:56:42 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/07 22:22:51 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-//before redraw map, clear the img buffer.
+// before redraw map, clear the img buffer.
 static void	clear_img(t_img *img)
 {
 	ft_bzero(img->data_addr, IMG_HEIGHT * img->size_line);
 }
 
-//get the accumulated changes of params and draw map with it.
+// get the accumulated changes of params and draw map with it.
 void	refresh(t_app *app)
 {
 	clear_img(app->img);

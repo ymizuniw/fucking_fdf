@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:10 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 17:29:37 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/07 21:47:13 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static t_parse_list	*alloc_head(void)
 
 void	close_free_exit(int fd, t_app *app, t_parse_list *head, const char *msg)
 {
-	wclose(fd);
+	if (close(fd) < 0)
+		perror("close");
 	free_parse_list(head);
 	free_all_rscs(app, msg);
 	ft_putstr_fd("fatal! parse_map failed.\n", 2);
@@ -58,7 +59,8 @@ void	parse_map(const char *map_path, t_app *app)
 		close_free_exit(fd, app, head, "malloc head failed\n");
 	if (!get_points_list(head, fd))
 		close_free_exit(fd, app, head, "map data composed of int?\n");
-	wclose(fd);
+	if (close(fd) < 0)
+		perror("close");
 	alloc_maps(app, head);
 	set_map_3d(app, head);
 	free_parse_list(head);

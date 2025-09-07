@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:12:27 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 08:28:00 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/07 22:20:32 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,13 @@
 # define WIN_MAX 1000000
 
 # define WIN_WIDTH 1200
-# define WIN_HEIGHT 900
-# define IMG_WIDTH 1200
-# define IMG_HEIGHT 900
+# define WIN_HEIGHT 1200
+# define IMG_WIDTH 1000
+# define IMG_HEIGHT 1000
 # define PAN_LIM_W 600
-# define PAN_LIM_H 450
+# define PAN_LIM_H 500
 # define SCALE_LIM_L 100.0f
 # define SCALE_LIM_S 0.5f
-
-# define MALLOC_FAILURE "fatal! malloc failed."
 
 typedef struct s_point
 {
