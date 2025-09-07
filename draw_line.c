@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:49 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/07 22:20:14 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/07 22:50:49 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ static void	put_pixel(t_img *img, size_t x, size_t y, int color)
 static void	initialize_draw_line_struct(t_draw_line *dl, t_map_2d *start,
 		t_map_2d *end)
 {
+	if (start->x < 0)
+		start->x = 0;
+	if (end->x >= (int)IMG_WIDTH)
+		end->x = (float)IMG_WIDTH;
+	if (start->y < 0)
+		start->y = 0;
+	if (end->y >= (int)IMG_HEIGHT)
+		end->y = (float)IMG_HEIGHT;
 	dl->x = (size_t)start->x;
 	dl->y = (size_t)start->y;
 	dl->dx = (int)end->x - (int)start->x;
