@@ -6,13 +6,14 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:07 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 17:24:34 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/07 22:59:06 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-//make 3d vector whose bases crosses virtically, following the orthonormalizing formula.
+// make 3d vector whose bases crosses virtically,
+// following the orthonormalizing formula.
 void	orthonormalize(t_mat3 *r)
 {
 	t_orthon	orth;

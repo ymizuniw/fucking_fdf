@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:10:00 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/05 17:36:55 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/07 22:58:44 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	alloc_app_content(&app);
-	// prepare_map(argv[1], &app);
 	parse_map((const char *)argv[1], &app);
 	mlx_app_work(&app);
 	return (0);
