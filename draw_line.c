@@ -6,14 +6,14 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:49 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/07 22:50:49 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/08 13:05:58 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-//put pixel color info to the culculated address from data address of img.
-static void	put_pixel(t_img *img, size_t x, size_t y, int color)
+// put pixel color info to the culculated address from data address of img.
+static void	put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
@@ -27,16 +27,10 @@ static void	put_pixel(t_img *img, size_t x, size_t y, int color)
 static void	initialize_draw_line_struct(t_draw_line *dl, t_map_2d *start,
 		t_map_2d *end)
 {
-	if (start->x < 0)
-		start->x = 0;
-	if (end->x >= (int)IMG_WIDTH)
-		end->x = (float)IMG_WIDTH;
-	if (start->y < 0)
-		start->y = 0;
-	if (end->y >= (int)IMG_HEIGHT)
-		end->y = (float)IMG_HEIGHT;
-	dl->x = (size_t)start->x;
-	dl->y = (size_t)start->y;
+	dl->x = (int)start->x;
+	dl->y = (int)start->y;
+	dl->ex = (int)end->x;
+	dl->ey = (int)end->y;
 	dl->dx = (int)end->x - (int)start->x;
 	dl->dy = (int)end->y - (int)start->y;
 	dl->sign_x = 1;
@@ -59,8 +53,9 @@ static void	x_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start,
 {
 	int	err;
 
+	(void)end;
 	err = dl->dx / 2;
-	while (dl->x != (size_t)end->x)
+	while (dl->x != dl->ex)
 	{
 		put_pixel(img, dl->x, dl->y, start->color);
 		err -= dl->dy;
@@ -79,8 +74,9 @@ static void	y_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start,
 {
 	int	err;
 
+	(void)end;
 	err = dl->dy / 2;
-	while (dl->y != (size_t)end->y)
+	while (dl->y != dl->ey)
 	{
 		put_pixel(img, dl->x, dl->y, start->color);
 		err -= dl->dx;
@@ -93,7 +89,7 @@ static void	y_major_axis(t_draw_line *dl, t_img *img, t_map_2d *start,
 	}
 }
 
-// draw_line() put pixels to img buffer by Bresenham's line algorithm.
+// draw_line put pixels to img buffer by Bresenham's line algorithm.
 // start point and end point are given by t_map_2d struct.
 void	draw_line(t_img *img, t_map_2d *start, t_map_2d *end)
 {

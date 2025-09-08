@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:12:27 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/07 22:53:54 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/08 12:40:40 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,10 @@ typedef struct s_draw_line
 {
 	int					dx;
 	int					dy;
-	size_t				x;
-	size_t				y;
+	int					ex;
+	int					ey;
+	int					x;
+	int					y;
 	int					sign_x;
 	int					sign_y;
 }						t_draw_line;
