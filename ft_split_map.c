@@ -6,14 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:55 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/08 13:25:44 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/08 15:33:36 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 // confirm the last indexes element is correctly parsed.
-
 // count the length of data array.
 static size_t	count_elems(char **data)
 {
@@ -41,7 +40,7 @@ static int	parse_color(const char *s, size_t *idx, t_point *point)
 	if ((((ft_strncmp(&s[*idx], "0x", 2) == 0) || ft_strncmp(&s[*idx], "0X",
 					2) == 0)) && (s[*idx + 2] && (ft_isdigit(s[*idx + 2])
 				|| (('a' <= s[*idx + 2] && s[*idx + 2] <= 'f') || ('A' <= s[*idx
-						+ 2] && s[*idx + 2] <= 'F')))))
+							+ 2] && s[*idx + 2] <= 'F')))))
 		point->color = ft_atoi_base(&s[*idx + 2], 16);
 	else
 	{
@@ -69,7 +68,7 @@ t_point	*get_map_info(const char *s)
 		return (free(point), NULL);
 	while (s[i] && ft_isdigit(s[i]))
 		i++;
-	if (!s[i] || (s[i++] == '\n' && !s[i]))
+	if (!s[i] || (s[i] == '\n' && (!s[i + 1] || s[i + 1] == ',')))
 	{
 		point->height = ft_atoi(s);
 		point->color = 0xffffff;

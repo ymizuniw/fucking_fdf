@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:12:27 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/08 12:40:40 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/08 15:33:01 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,8 @@ void					parse_map(const char *map_path, t_app *app);
 void					convert_map(t_app *app);
 
 // rotation matrix and isometric proj functions
-t_map_2d				convert_points(t_map_3d ptr, t_matrix *mat);
+t_map_2d				convert_points(t_map_3d ptr, t_matrix *mat,
+							float center_x, float center_y);
 void					orthonormalize(t_mat3 *r);
 void					rotation_adjustment(t_app *app, t_vec3 axis_screen,
 							float delta);
