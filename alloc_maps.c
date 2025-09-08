@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:33 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/08 12:47:05 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/08 15:47:26 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	alloc_maps(t_app *app, t_parse_list *head)
 	app->map->width = get_map_width(head->points);
 	app->map->height = get_map_height(head);
 	app->map->map_size = app->map->width * app->map->height;
+	if (app->map->map_size > (size_t)MAP_MAX)
+		free_and_exit("map size too large\n", app, keep_head);
 	app->map->map_3d = malloc(sizeof(t_map_3d) * (app->map->map_size));
 	if (!app->map->map_3d)
 		free_and_exit("malloc map_3d failed!\n", app, head);

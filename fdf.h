@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:12:27 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/08 15:33:01 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/08 16:13:24 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define PAN_LIM_H 375
 # define SCALE_LIM_L 30.0f
 # define SCALE_LIM_S 0.5f
+# define MAP_MAX 281250
 
 typedef struct s_point
 {
