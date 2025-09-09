@@ -6,7 +6,7 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 21:09:55 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/09/08 15:33:36 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/10 06:46:44 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	set_points_array(char **data, t_point **points, size_t count)
 		points[j] = get_map_info((const char *)data[j]);
 		if (!points[j])
 		{
-			ft_putstr_fd("get_map_info failed\n", 2);
+			ft_putstr_fd("\n", 1);
 			free_points_array(points);
 			return (-1);
 		}

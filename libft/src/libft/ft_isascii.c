@@ -6,13 +6,13 @@
 /*   By: ymizuniw <ymizuniw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 19:55:10 by ymizuniw          #+#    #+#             */
-/*   Updated: 2025/08/31 21:35:06 by ymizuniw         ###   ########.fr       */
+/*   Updated: 2025/09/10 05:29:04 by ymizuniw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isascii(char c)
 {
-	if (c >= 0 && c <= 127)
+	if (c >= 0 && c < 127)
 		return (1);
 	else
 		return (0);
